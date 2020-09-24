@@ -20,12 +20,12 @@ def login():
     print("%s!!" % result["data"])
 
 
-def get_csrf_token():
+def fetch_csrf_token():
     if not os.path.isdir(COOKIES_DIR):
         os.mkdir(COOKIES_DIR)
     curl("get", endpoint="profile/")
 
 
 def auth():
-    get_csrf_token()
+    fetch_csrf_token()
     login()
