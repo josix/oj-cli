@@ -1,7 +1,12 @@
 {
-  "0": {
+  "hw0": {
     "contest_id": 6,
     "contest_problem_id": "1091CP1+Assign0",
     "problem_id": 124
+  },
+  "ex1": {
+    "contest_id": 8,
+    "contest_problem_id": "1091CP1+Exercise+1",
+    "problem_id": 134
   }
 }

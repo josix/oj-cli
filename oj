@@ -1,7 +1,7 @@
-#!/usr/local/bin/python2.7
+#!/opt/csw/bin/python2.7
 
 import argparse
-from commands import auth, get_assign
+from commands import auth, get_assign, submit
 
 parser = argparse.ArgumentParser(
     prog="oj",
@@ -19,9 +19,26 @@ parser_get_assign = subparsers.add_parser(
 parser_get_assign.add_argument("assign_no", type=str, help="assignment number")
 parser_login.set_defaults(func=get_assign)
 
+parser_test = subparsers.add_parser(
+    "test", description="Nothing but a test"
+)
+
+parser_submit = subparsers.add_parser(
+    "submit", description="Submit and grade your code"
+)
+parser_submit.add_argument("assign_no", type=str, help="assignment number")
+parser_submit.add_argument("code_file", type=str, help="file of your codes")
+
+def meow():
+	print("meow.")
+
 args = parser.parse_args()
 cmd_to_func = {
     "login": auth,
     "get_assign": lambda: get_assign(args.assign_no),
+	"test": meow,
+    "submit":  lambda: submit(args.assign_no, args.code_file),
 }
+
+
 cmd_to_func[args.subcmd]()

@@ -1,6 +1,7 @@
 from os.path import expanduser, dirname, realpath
 
-API_HOST = "<URL>"
+HOST = "https://oj.mozix.ebg.tw/"
+API_HOST = HOST + "api"
 
 CONTENT_TYPE_OPTION = " -H 'Content-Type: application/json' "
 
