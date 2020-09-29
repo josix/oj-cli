@@ -1,7 +1,7 @@
 #!/opt/csw/bin/python2.7
 
 import argparse
-from commands import auth, get_assign, submit
+from commands import auth, get_assign, get_problem, submit
 
 parser = argparse.ArgumentParser(
     prog="oj",
@@ -14,14 +14,15 @@ parser_login = subparsers.add_parser(
 parser_login.set_defaults(func=auth)
 
 parser_get_assign = subparsers.add_parser(
-    "get_assign", description="Get you assignment/exercise from CP Online Judge"
+    "get_assign", description="Get assignment/exercise from contest"
 )
 parser_get_assign.add_argument("assign_no", type=str, help="assignment number")
-parser_login.set_defaults(func=get_assign)
+parser_get_assign.set_defaults(func=get_assign)
 
-parser_test = subparsers.add_parser(
-    "test", description="Nothing but a test"
+parser_get_problem = subparsers.add_parser(
+    "get_problem", description="Get problem from public problem"
 )
+parser_get_problem.add_argument("problem_id", type=str, help="problem display ID")
 
 parser_submit = subparsers.add_parser(
     "submit", description="Submit and grade your code"
@@ -36,7 +37,7 @@ args = parser.parse_args()
 cmd_to_func = {
     "login": auth,
     "get_assign": lambda: get_assign(args.assign_no),
-	"test": meow,
+	"get_problem": lambda: get_problem(args.problem_id),
     "submit":  lambda: submit(args.assign_no, args.code_file),
 }
 

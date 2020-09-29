@@ -31,7 +31,7 @@ def curl(method, payload=None, endpoint="", use_x_csrf_token=False):
         )
     if payload:
         cmd += " -d '{data}' ".format(data=json.dumps(payload))
-    cmd += (" -X {method} {api_host}/{endpoint}").format(
+    cmd += (" -X {method} \"{api_host}/{endpoint}\"").format(
         method=method,
         api_host=API_HOST,
         endpoint=endpoint,
