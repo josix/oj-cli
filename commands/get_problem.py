@@ -11,12 +11,10 @@ def get_problem(problem_id):
 		problem_id
 	)
 	result = json.loads(curl("get", endpoint=endpoint, use_x_csrf_token=True))
-	#print(result)
 	data = result["data"]
 	if not data:
 		print("Unexpected Error with Server")
 		return
-	#print(data)
 	try:
 		samples = data["samples"]
 		templates = data["template"]
