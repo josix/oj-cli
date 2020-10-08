@@ -6,32 +6,36 @@ from util.curl import curl
 from constants import ASSIGNMENT_MAPPING_PATH
 
 
-def get_assign(assign_number):
+def get_assign(assign_name):
     with open(ASSIGNMENT_MAPPING_PATH, "rt") as jsoin_in:
         assign_to_config = json.load(jsoin_in)
-    if assign_number not in assign_to_config:
+    if assign_name not in assign_to_config:
         print("Invalid Assign Number!")
         return
     contest_id, problem_id = (
-        assign_to_config[assign_number]["contest_id"],
-        assign_to_config[assign_number]["contest_problem_id"],
+        assign_to_config[assign_name]["contest_id"],
+        assign_to_config[assign_name]["contest_problem_id"],
     )
     endpoint = "contest/problem?contest_id={}&problem_id={}".format(
         contest_id, problem_id
     )
     result = json.loads(curl("get", endpoint=endpoint, use_x_csrf_token=True))
-    data = result["data"][0]
+    data = result["data"]
     if not data:
         print("Unexpected Error with Server")
         return
     try:
         samples = data["samples"]
-        template = data["template"]["C"]
     except:
         print("Unexpected Error in Parsing Response")
         return
-    dir_name = "assign{}".format(assign_number)
-    template_path = dir_name + "/" + "hw{}.c".format(assign_number)
+    template = None
+    if "C" in data["template"]:
+        template = data["template"]["C"]
+    else:
+        template = "#include <stdio.h>\n\nint main() {\n  \n  return 0;\n}\n"
+    dir_name = assign_name
+    template_path = dir_name + "/" + "{}.c".format(assign_name)
     if not os.path.isdir(dir_name):
         os.mkdir(dir_name)
     with open(template_path, "wt") as fout:
