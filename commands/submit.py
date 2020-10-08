@@ -1,8 +1,10 @@
 import json
 import time
 
-from constants import ASSIGNMENT_MAPPING_PATH, HOST
+from constants import ASSIGNMENT_MAPPING_PATH
 from util.curl import curl
+
+from .status import status
 
 
 def submit(assign_number, filename):
@@ -18,9 +20,8 @@ def submit(assign_number, filename):
     try:
         with open(filename, "r") as fin:
             code = fin.read()
-            print(code)
     except IOError:
-        print('file "' + filename + '" does not exist!')
+        print('File "' + filename + '" does not exist!')
         return
     payload = {
         "problem_id": problem_id,
@@ -37,78 +38,19 @@ def submit(assign_number, filename):
     except ValueError:
         print("No response is received! Please contact class TA!")
 
+    response_data = submission_response["data"]
+    if response_data == "The contest have ended":
+        print("The contest has ended.")
+        return
     try:
-        submission_id = submission_response["data"]["submission_id"]
+        submission_id = response_data["submission_id"]
     except TypeError:
-        if submission_response["data"] == "The contest have ended":
-            print("The contest has ended.")
-            return
-        else:
-            print("Unknown error has occured!")
-            return
-    print("submit successful! Grading...")
-
-    endpoint = "submission?id={}".format(submission_id)
-    while True:
-        result = json.loads(curl("GET", endpoint=endpoint, use_x_csrf_token=True))
-        try:
-            total_score = result["data"]["statistic_info"]["score"]
-        except KeyError:
-            time.sleep(1)
-            continue
-        try:
-            print("Your code has been graded! Here's your results:")
-            Index = 0
-            for answers in result["data"]["info"]["data"]:
-                Index += 1
-                answers_status = answers["result"]
-                if answers_status == 4:
-                    print(
-                        "\033[0;35mTestcase "
-                        + str(Index)
-                        + " : RE(Runtime Error)\033[0m"
-                    )
-                elif answers_status == 3:
-                    print(
-                        "\033[0mTestcase "
-                        + str(Index)
-                        + " : MLE(Memory Limit Exceeded)\033[0m"
-                    )
-                elif answers_status == 1:
-                    print(
-                        "\033[0mTestcase "
-                        + str(Index)
-                        + " : TLE(Time Limit Exceeded)\033[0m"
-                    )
-                elif answers_status == 0:
-                    print("\033[0;32mTestcase " + str(Index) + " : AC(Accept)\033[0m")
-                elif answers_status == -1:
-                    print(
-                        "\033[0;31mTestcase "
-                        + str(Index)
-                        + " : WA(Wrong Answer)\033[0m"
-                    )
-                else:
-                    print(
-                        "\033[0mTestcase " + str(Index) + " : SE(System Error)\033[0m"
-                    )
-            break
-        except KeyError:
-            if result["data"]["result"] == -2:
-                print("\033[0;36mResults : CE(Compilation Error)\033[0m")
-            else:
-                print("\033[0mResults : SE(System Error)\033[0m")
-            break
-    print("Your total score: " + str(total_score))
-    print("For graphical results, please visit: " + HOST + "status/" + submission_id)
-
-
-# -2 : CE
-# -1 : WA
-# 0 : AC
-# 1 : TLE
-# 2 :
-# 3 : MLE
-# 4 : RE
-
-# --------------------------------------------------------------------------
+        print("Unknown error occuried!")
+        return
+    print(
+        "Submit successfully!\n"
+        "Your submission Id is {}\n"
+        "Getting submission status...".format(submission_id)
+    )
+    time.sleep(0.6)
+    status(submission_id)

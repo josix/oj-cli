@@ -18,5 +18,10 @@
     "contest_id": 9,
     "contest_problem_id": "1091CP1+Assign2",
     "problem_id": 143
+  },
+  "hw3": {
+    "contest_id": 13,
+    "contest_problem_id": "1091CP1+Assign3",
+    "problem_id": 153
   }
 }
