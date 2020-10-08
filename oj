@@ -1,6 +1,7 @@
 #!/opt/csw/bin/python2.7
 
 import argparse
+
 from commands import auth, get_assign, get_problem, submit
 
 parser = argparse.ArgumentParser(

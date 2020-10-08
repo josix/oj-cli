@@ -1,10 +1,10 @@
-from getpass import getpass
-import os
 import json
+import os
+from getpass import getpass
 
-from util.curl import curl
-from util.common import get_csrf_token
 from constants import COOKIES_DIR
+from util.common import get_csrf_token
+from util.curl import curl
 
 
 def login():

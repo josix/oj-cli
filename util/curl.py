@@ -1,11 +1,8 @@
-from subprocess import check_output
 import json
+from subprocess import check_output
 
-from constants import (
-    API_HOST,
-    CONTENT_TYPE_OPTION,
-    COOKIES_PATH,
-)
+from constants import API_HOST, CONTENT_TYPE_OPTION, COOKIES_PATH
+
 from .common import get_csrf_token
 
 
@@ -31,7 +28,7 @@ def curl(method, payload=None, endpoint="", use_x_csrf_token=False):
         )
     if payload:
         cmd += " -d '{data}' ".format(data=json.dumps(payload))
-    cmd += (" -X {method} \"{api_host}/{endpoint}\"").format(
+    cmd += (' -X {method} "{api_host}/{endpoint}"').format(
         method=method,
         api_host=API_HOST,
         endpoint=endpoint,

@@ -1,14 +1,13 @@
 import json
 import os
 
-from util.curl import curl
-
 from constants import ASSIGNMENT_MAPPING_PATH
+from util.curl import curl
 
 
 def get_assign(assign_name):
-    with open(ASSIGNMENT_MAPPING_PATH, "rt") as jsoin_in:
-        assign_to_config = json.load(jsoin_in)
+    with open(ASSIGNMENT_MAPPING_PATH, "rt") as json_in:
+        assign_to_config = json.load(json_in)
     if assign_name not in assign_to_config:
         print("Invalid Assign Number!")
         return
