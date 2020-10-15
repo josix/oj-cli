@@ -21,7 +21,7 @@ git clone https://github.com/josix/oj-cli.git
 Use `oj login` to login to the account in OnlineJudge. It required you to enter your account information so that `oj-cli` could access OnlineJudge service successfully. After entering your username and password. `oj-cli` will respond if you login successfully or not.
 ### Usage
 No argument required. Only enter `oj login` and fill the account information to login to OnlineJudge.
-#### Example
+### Example
 ```
 $ oj login
 Usernme:
@@ -36,7 +36,7 @@ Use `oj get_assign <assign_no>` to download the latest assignment from contest. 
 #### assign_no
 assign_no represents your assign number like `hw1`, `ex1`, etc. `oj-cli` will prompt `Invalid Assign Number!` if the input assign number has not opened.
 
-#### Example
+### Example
 ```
 $ oj get_assign hw2
 $ oj get_assign ex3
