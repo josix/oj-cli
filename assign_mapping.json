@@ -23,5 +23,10 @@
     "contest_id": 13,
     "contest_problem_id": "1091CP1+Assign3",
     "problem_id": 153
+  },
+  "ex3": {
+    "contest_id": 14,
+    "contest_problem_id": "1091CP1+Exercise3",
+    "problem_id": 154
   }
 }
