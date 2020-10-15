@@ -27,6 +27,7 @@ def get_assign(assign_name):
         samples = data["samples"]
     except:
         print("Unexpected Error in Parsing Response")
+        print(data)
         return
     template = None
     if "C" in data["template"]:
