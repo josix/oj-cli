@@ -2,6 +2,7 @@
 ## Installation 
 ### Ghost Server
 ```
+cd ~
 echo 'export PATH="~f103207425/.local/bin:$PATH"' >> ~/.profile
 source ~/.bashrc
 ```
