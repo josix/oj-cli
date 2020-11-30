@@ -11,8 +11,13 @@ def submit(assign_number, filename):
     with open(ASSIGNMENT_MAPPING_PATH, "rt") as json_in:
         assign_to_config = json.load(json_in)
     if assign_number not in assign_to_config:
-        print("Invalid Assign Number!")
-        return
+		print("Invalid Assign Number!")
+		print("Available name now is:")
+		for hwmap in assign_to_config:
+			print("- " + hwmap)
+		print("\nIf you want to update latest homework assignment, type: [oj update] to update.")
+		return
+
     contest_id, problem_id = (
         assign_to_config[assign_number]["contest_id"],
         assign_to_config[assign_number]["problem_id"],

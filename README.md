@@ -62,3 +62,29 @@ code_file is the path to your script. `oj` will read the file then submit this a
 $ oj submit hw2 hw2.c
 $ oj submit ex3 ../ex3.c
 ```
+
+
+### `oj contest <options> <assign_no>`
+### About
+Use `oj contest <option> <assign_no>` to get rank, status, and update contest map.
+### Usage
+`oj contest` required two arguments to execute.
+
+#### options
+options allows three different methods: rank, status, and update.
+##### rank
+It shows the rank of the contest by bar graph and score.
+##### status
+It shows the latest 20 submissions of the contest.
+##### update
+It updates the assignment_map.json.
+
+#### assign_no
+assign_no represents your assign number like `hw1`, `ex1`, etc. `oj-cli` will prompt `Invalid Assign Number!` if the input assign number has not opened and provide the existing assign number in the map.
+
+#### Example
+```
+$ oj contest status Exercise8
+$ oj contest rank Assign8
+$ oj contest update .
+```

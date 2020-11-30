@@ -1,8 +1,8 @@
-#!/usr/bin/python2
+#!/usr/bin/python2.7
 
 import argparse
 
-from commands import auth, get_assign, get_problem, status, submit, update_map
+from commands import auth, get_assign, get_problem, status, submit, update_map, contests
 
 parser = argparse.ArgumentParser(
     prog="oj",
@@ -15,15 +15,24 @@ parser_login = subparsers.add_parser(
 parser_login.set_defaults(func=auth)
 
 parser_update = subparsers.add_parser(
-    "update", description="Update your Assign and Exercise Homework."
+    "update", description="Update your Assign and Exercise Homework"
 )
-parser_update.set_defaults(func=update_map)
+parser_login.set_defaults(func=update_map)
 
 parser_get_assign = subparsers.add_parser(
     "get_assign", description="Get assignment/exercise from contest"
 )
 parser_get_assign.add_argument("assign_no", type=str, help="assignment number")
 parser_get_assign.set_defaults(func=get_assign)
+
+
+parser_contest = subparsers.add_parser(
+    "contest", description="View specific contest statics."
+)
+parser_contest.add_argument("option", type=str, help="[status|s`]: Show the latest 20 submissions of this contest. [update|u]: Update the latest contest. [rank|r]: Show the rank of this contest.")
+parser_contest.add_argument("assign_no", type=str, help="assignment number. NOTICE that the [update] method requires this argument.")
+parser_contest.set_defaults(func=contests)
+
 
 parser_get_problem = subparsers.add_parser(
     "get_problem", description="Get problem from public problem"
@@ -47,6 +56,7 @@ cmd_to_func = {
     "get_problem": lambda: get_problem(args.problem_id),
     "submit": lambda: submit(args.assign_no, args.code_file),
     "status": lambda: status(args.submission_id),
+	"contest": lambda: contests(args.option, args.assign_no),
 }
 
 
