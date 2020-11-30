@@ -12,7 +12,7 @@ def submit(assign_number, filename):
         assign_to_config = json.load(json_in)
     if assign_number not in assign_to_config:
 		print("Invalid Assign Number!")
-		print("Available name now is:")
+		print("Available names are")
 		for hwmap in assign_to_config:
 			print("- " + hwmap)
 		print("\nIf you want to update latest homework assignment, type: [oj update] to update.")

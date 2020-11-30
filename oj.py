@@ -2,7 +2,7 @@
 
 import argparse
 
-from commands import auth, get_assign, get_problem, status, submit, update_map, contests
+from commands import auth, get_assign, get_problem, status, submit, update_map, contests_result, contests_status, my_contests_status
 
 parser = argparse.ArgumentParser(
     prog="oj",
@@ -27,11 +27,23 @@ parser_get_assign.set_defaults(func=get_assign)
 
 
 parser_contest = subparsers.add_parser(
-    "contest", description="View specific contest statics."
+    "mystat", description="Show your latest 20 submissions of the specific contest."
 )
-parser_contest.add_argument("option", type=str, help="[status|s`]: Show the latest 20 submissions of this contest. [update|u]: Update the latest contest. [rank|r]: Show the rank of this contest.")
-parser_contest.add_argument("assign_no", type=str, help="assignment number. NOTICE that the [update] method requires this argument.")
-parser_contest.set_defaults(func=contests)
+parser_contest.add_argument("assign_no", type=str, help="assignment number")
+parser_contest.set_defaults(func=my_contests_status)
+
+parser_contest = subparsers.add_parser(
+    "stat", description="Show the latest 20 submissions of the specific contest."
+)
+parser_contest.add_argument("assign_no", type=str, help="assignment number")
+parser_contest.set_defaults(func=contests_status)
+
+parser_contest = subparsers.add_parser(
+    "rank", description="Show the score of the whole class."
+)
+parser_contest.add_argument("assign_no", type=str, help="assignment number")
+parser_contest.set_defaults(func=contests_result)
+
 
 
 parser_get_problem = subparsers.add_parser(
@@ -56,7 +68,9 @@ cmd_to_func = {
     "get_problem": lambda: get_problem(args.problem_id),
     "submit": lambda: submit(args.assign_no, args.code_file),
     "status": lambda: status(args.submission_id),
-	"contest": lambda: contests(args.option, args.assign_no),
+	"stat": lambda: contests_status(args.assign_no),
+	"mystat": lambda: my_contests_status(args.assign_no),
+	"rank": lambda: contests_result(args.assign_no),
 }
 
 

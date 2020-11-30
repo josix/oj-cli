@@ -34,4 +34,4 @@ def update_map():
 	f = open(ASSIGNMENT_MAPPING_PATH,'w')
 	f.write(inputstr)
 	f.close
-	print("\nUpdated successfully!\n")
+	print("Updated successfully!")
