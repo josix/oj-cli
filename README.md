@@ -72,11 +72,14 @@ Use `oj contest <option> <assign_no>` to get rank, status, and update contest ma
 
 #### options
 options allows three different methods: rank, status, and update.
-##### rank
+
+`rank`
 It shows the rank of the contest by bar graph and score.
-##### status
+
+`status`
 It shows the latest 20 submissions of the contest.
-##### update
+
+`update`
 It updates the assignment_map.json.
 
 #### assign_no
