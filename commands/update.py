@@ -10,13 +10,8 @@ from util.colors import cyan_wrapper
 
 def update_map():
 	endpoint = "contests?offsets=0&limit=100&status=0"
-	payload = {
-			"offsets":0,
-			"limit":100,
-			"status":0
-			}
 	inputstr = '{'
-	result = json.loads(curl("get", payload=payload, endpoint=endpoint, use_x_csrf_token=True))
+	result = json.loads(curl("get", endpoint=endpoint, use_x_csrf_token=True))
 	for i in range(0,len(result['data']['results'])):
 		contestid = result['data']['results'][i]['id']
 		payload = {
