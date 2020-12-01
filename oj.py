@@ -27,9 +27,9 @@ parser_get_assign.set_defaults(func=get_assign)
 
 
 parser_contest = subparsers.add_parser(
-    "mystat", description="Show your latest 20 submissions of the specific contest."
+    "mystat", description="Show your latest 20 submissions of the specific contest or show specific submission status."
 )
-parser_contest.add_argument("assign_no", type=str, help="assignment number")
+parser_contest.add_argument("assign_no", type=str, help="assignment number or submitID")
 parser_contest.set_defaults(func=my_contests_status)
 
 parser_contest = subparsers.add_parser(
