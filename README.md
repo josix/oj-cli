@@ -64,27 +64,62 @@ $ oj submit ex3 ../ex3.c
 ```
 
 
-### `oj contest <options> <assign_no>`
-### About
-Use `oj contest <option> <assign_no>` to get rank, status, and update contest map.
-### Usage
-`oj contest` required two arguments to execute.
+### `oj rank <assign_no>`
+ ### About
+ Use `oj rank <assign_no>` to view the class result of this assign.
+ ### Usage
+ `oj rank` only required one argument to execute.
+ #### assign_no
+ assign_no represents your assign number like `hw1`, `ex1`, etc. `oj-cli` will prompt `Invalid Assign Number!` if the input assign number has not opened.
 
-#### options
-options allows three different methods: rank, status, and update.
-##### rank
-It shows the rank of the contest by bar graph and score.
-##### status
-It shows the latest 20 submissions of the contest.
-##### update
-It updates the assignment_map.json.
+ ### Example
+ ```
+ $ oj rank hw2
+ $ oj rank ex3
+ ```
 
-#### assign_no
-assign_no represents your assign number like `hw1`, `ex1`, etc. `oj-cli` will prompt `Invalid Assign Number!` if the input assign number has not opened and provide the existing assign number in the map.
 
-#### Example
-```
-$ oj contest status Exercise8
-$ oj contest rank Assign8
-$ oj contest update .
-```
+ ### `oj update`
+ ### About
+ Use `oj update` to get the latest assignments.
+ ### Usage
+ No argument required. Only enter `oj update` and it will automatically get the assignments.
+
+ ### Example
+ ```
+ $ oj update
+ ```
+
+
+ ### `oj stat <assign_no>`
+ ### About
+ Use `oj stat <assign_no>` to view the latest 20 submissions of this contest.
+ ### Usage
+ `oj stat` only required one argument to execute.
+ #### assign_no
+ assign_no represents your assign number like `hw1`, `ex1`, etc. `oj-cli` will prompt `Invalid Assign Number!` if the input assign number has not opened.
+
+ ### Example
+ ```
+ $ oj stat hw2
+ $ oj stat ex3
+ ```
+
+
+
+ ### `oj mystat <assign_no || ID>`
+ ### About
+ Use `oj mystat <assign_no || ID>` to view your latest 20 submissions of this contest or your specific submission.
+ ### Usage
+ `oj mystat` only required one argument to execute.
+ #### assign_no || ID
+ assign_no represents your assign number like `hw1`, `ex1`, etc. `oj-cli` will prompt `Invalid Assign Number!` if the input assign number has not opened.
+ Your stat will show by table and every stat have an ID for you to see details. Type `oj mystat <ID>` to see.
+ 
+ 
+ ### Example
+ ```
+ $ oj mystat hw2
+ $ oj mystat ID2
+ ```
+ 
