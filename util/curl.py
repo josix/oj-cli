@@ -5,7 +5,7 @@ from subprocess import check_output
 from constants import API_HOST, CONTENT_TYPE_OPTION, COOKIES_PATH
 
 from .common import get_csrf_token
-
+from .colors import red_wrapper
 
 def curl(method, payload=None, endpoint="", use_x_csrf_token=False):
     """
@@ -35,5 +35,9 @@ def curl(method, payload=None, endpoint="", use_x_csrf_token=False):
         endpoint=endpoint,
     )
     result = check_output(cmd, shell=True)
-    str(result.decode(encoding="utf8"))
-    return result
+    try:
+        str(result.decode(encoding="utf8"))
+        return result
+    except:
+        print(red_wrapper("\nBad Response! Please report back to TAs!\n"))
+        return

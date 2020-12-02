@@ -158,15 +158,30 @@ def contests_result(assign_name):
 	for i in blockstatus:
 		stastr = ''
 		if ic == 0:
-			print(' {:3}~{:3} :{:3}  |  {:33} : {}'.format(ic+1,ic+10,i,status_to_response[0],result2["statistic_info"]["0"]))
+			try:
+				print(' {:3}~{:3} :{:3}  |  {:33} : {}'.format(ic+1,ic+10,i,status_to_response[0],result2["statistic_info"]["0"]))
+			except:
+				print(' {:3}~{:3} :{:3}  |  {:33} : {}'.format(ic+1,ic+10,i,status_to_response[0],0))
 		elif ic == 10:
-			print(' {:3}~{:3} :{:3}  |  {:33} : {}'.format(ic+1,ic+10,i,status_to_response[4],result2["statistic_info"]["4"]))
+			try:
+				print(' {:3}~{:3} :{:3}  |  {:33} : {}'.format(ic+1,ic+10,i,status_to_response[4],result2["statistic_info"]["4"]))
+			except:
+				print(' {:3}~{:3} :{:3}  |  {:33} : {}'.format(ic+1,ic+10,i,status_to_response[4],0))
 		elif ic == 20:
-			print(' {:3}~{:3} :{:3}  |  {:33} : {}'.format(ic+1,ic+10,i,status_to_response[8],result2["statistic_info"]["8"]))
+			try:
+				print(' {:3}~{:3} :{:3}  |  {:33} : {}'.format(ic+1,ic+10,i,status_to_response[8],result2["statistic_info"]["8"]))
+			except:
+				print(' {:3}~{:3} :{:3}  |  {:33} : {}'.format(ic+1,ic+10,i,status_to_response[8],0))
 		elif ic == 30:
-			print(' {:3}~{:3} :{:3}  |  {:33} : {}'.format(ic+1,ic+10,i,status_to_response[-1],result2["statistic_info"]["-1"]))	
+			try:
+				print(' {:3}~{:3} :{:3}  |  {:33} : {}'.format(ic+1,ic+10,i,status_to_response[-1],result2["statistic_info"]["-1"]))
+			except:
+				print(' {:3}~{:3} :{:3}  |  {:33} : {}'.format(ic+1,ic+10,i,status_to_response[-1],0))
 		elif ic == 40:
-			print(' {:3}~{:3} :{:3}  |  {:33} : {}'.format(ic+1,ic+10,i,status_to_response[-2],result2["statistic_info"]["-2"]))
+			try:
+				print(' {:3}~{:3} :{:3}  |  {:33} : {}'.format(ic+1,ic+10,i,status_to_response[-2],result2["statistic_info"]["-2"]))
+			except:
+				print(' {:3}~{:3} :{:3}  |  {:33} : {}'.format(ic+1,ic+10,i,status_to_response[-2],0))	
 		elif ic == 50:
 			print(' {:3}~{:3} :{:3}  |--------------------------------'.format(ic+1,ic+10,i))
 		elif ic == 60:
