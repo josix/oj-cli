@@ -10,7 +10,11 @@ def get_assign(assign_name):
         assign_to_config = json.load(json_in)
     if assign_name not in assign_to_config:
         print("Invalid Assign Number!")
-        return
+		print("Available names are:")
+		for hwmap in assign_to_config:
+			print("- " + cyan_wrapper(hwmap))
+		print("If you want to update latest homework assignment, type: [oj update] to update.")
+		return
     contest_id, problem_id = (
         assign_to_config[assign_name]["contest_id"],
         assign_to_config[assign_name]["contest_problem_id"],
