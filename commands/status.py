@@ -35,3 +35,4 @@ def status(submission_id):
 	for ans in result["data"]["info"]["data"]:
 		print("|#{:2}|{:33}|{:5}ms|{:3}MB| {:5}|".format(ans["test_case"],status_to_response[ans["result"]], ans["real_time"], (ans["memory"]/1048576)+1, ans["score"]))
 	print("=================================================")
+	#print(response_data["code"])
