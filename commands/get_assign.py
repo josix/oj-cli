@@ -1,8 +1,10 @@
 import json
 import os
+#from BeautifulSoup import BeautifulSoup as bs
 
 from constants import ASSIGNMENT_MAPPING_PATH
 from util.curl import curl
+from util.colors import cyan_wrapper
 
 
 def get_assign(assign_name):
@@ -10,6 +12,10 @@ def get_assign(assign_name):
         assign_to_config = json.load(json_in)
     if assign_name not in assign_to_config:
         print("Invalid Assign Number!")
+        print("Available names are:")
+        for hwmap in assign_to_config:
+            print("- " + cyan_wrapper(hwmap + " [" + assign_to_config[hwmap]['contest_name'] + "]"))
+        print("If you want to update latest homework assignment, type: [oj update] to update.")
         return
     contest_id, problem_id = (
         assign_to_config[assign_name]["contest_id"],

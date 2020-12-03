@@ -18,7 +18,7 @@ def contests_status(assign_name):
 		print("Invalid Assign Number!")
 		print("Available names are:")
 		for hwmap in assign_to_config:
-			print("- " + cyan_wrapper(hwmap))
+			print("- " + cyan_wrapper(hwmap + " [" + assign_to_config[hwmap]['contest_name'] + "]"))
 		print("If you want to update latest homework assignment, type: [oj update] to update.")
 		return
 	contest_id, problem_id = (
@@ -34,7 +34,7 @@ def contests_status(assign_name):
 			-1: red_wrapper("WA(Wrong Answer)"),  # WA
 			-2: cyan_wrapper("CE(Compilation Error)"),  # CE
 			0: green_wrapper("AC(Accept)"),  # AC
-			2: "TLE(Time Limit Exceeded)",  # TLE
+			1: purple_wrapper("TLE(TimeLimitExceeded)"),  # TLE
 			3: "MLE(Memory Limit Exceeded)",  # ML 
 			4: purple_wrapper("RE(Runtime Error)"),  # RE
 			8: cyan_wrapper("PAC(Partial Accepted)")
@@ -69,10 +69,9 @@ def my_contests_status(assign_name):
 		print("Invalid Assign Number!")
 		print("Available names are:")
 		for hwmap in assign_to_config:
-			print("- " + cyan_wrapper(hwmap))
+			print("- " + cyan_wrapper(hwmap + " [" + assign_to_config[hwmap]['contest_name'] + "]"))
 		print("If you want to update latest homework assignment, type: [oj update] to update.")
 		return
-
 	contest_id, problem_id = (
         assign_to_config[assign_name]["contest_id"],
         assign_to_config[assign_name]["contest_problem_id"],
@@ -117,10 +116,9 @@ def contests_result(assign_name):
 		print("Invalid Assign Number!")
 		print("Available names are:")
 		for hwmap in assign_to_config:
-			print("- " + cyan_wrapper(hwmap))
+			print("- " + cyan_wrapper(hwmap + " [" + assign_to_config[hwmap]['contest_name'] + "]"))
 		print("If you want to update latest homework assignment, type: [oj update] to update.")
 		return
-
 	contest_id, problem_id = (
         assign_to_config[assign_name]["contest_id"],
         assign_to_config[assign_name]["contest_problem_id"],
