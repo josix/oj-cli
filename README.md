@@ -3,7 +3,6 @@
 ### Installation from source code
 ```
 cd ~
-sed '/export PATH="~f103207425/.local/bin:$PATH"/d' ~/.profile
 git clone https://github.com/andyjjrt/oj-cli.git
 alias oj="python ~/oj-cli/oj >> ~/.profile
 source ~/.bashrc
@@ -11,6 +10,11 @@ source ~/.bashrc
 
 ### Ghost Installation
 Canceled because this version has personal information stored.
+To use source code installation, please type the folloeing command if you had install the previous version.
+```
+sed '/export PATH="~f103207425/.local/bin:$PATH"/d' ~/.profile
+```
+or just go to `~/.profile` file to remove `export PATH="~f103207425/.local/bin:$PATH"` line.
 
 ### Commands
 ### `oj login`
