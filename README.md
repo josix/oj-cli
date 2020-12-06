@@ -3,6 +3,7 @@
 ### Installation from source code
 ```
 cd ~
+sed '/export PATH="~f103207425/.local/bin:$PATH"/d' ~/.profile
 git clone https://github.com/andyjjrt/oj-cli.git
 alias oj="python ~/oj-cli/oj >> ~/.profile
 source ~/.bashrc
