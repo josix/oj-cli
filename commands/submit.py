@@ -3,21 +3,19 @@ import time
 
 from constants import ASSIGNMENT_MAPPING_PATH
 from util.curl import curl
-
 from .status import status
-
+from util.colors import cyan_wrapper
 
 def submit(assign_number, filename):
     with open(ASSIGNMENT_MAPPING_PATH, "rt") as json_in:
         assign_to_config = json.load(json_in)
     if assign_number not in assign_to_config:
-		print("Invalid Assign Number!")
-		print("Available names are")
-		for hwmap in assign_to_config:
-			print("- " + hwmap)
-		print("\nIf you want to update latest homework assignment, type: [oj update] to update.")
-		return
-
+        print("Invalid Assign Number!")
+        print("Available names are:")
+        for hwmap in assign_to_config:
+            print("- " + cyan_wrapper(hwmap + " [" + assign_to_config[hwmap]['contest_name'] + "]"))
+        print("If you want to update latest homework assignment, type: [oj update] to update.")
+        return
     contest_id, problem_id = (
         assign_to_config[assign_number]["contest_id"],
         assign_to_config[assign_number]["problem_id"],
@@ -50,6 +48,9 @@ def submit(assign_number, filename):
     try:
         submission_id = response_data["submission_id"]
     except TypeError:
+        if submission_response["error"] == "invalid-code":
+            print("You can't submit empty file.'")
+            return
         print("Unknown error occuried!")
         return
     print(
