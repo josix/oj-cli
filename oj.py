@@ -2,7 +2,7 @@
 
 import argparse
 
-from commands import auth, get_assign, get_problem, status, submit, update_map, contests_result, contests_status, my_contests_status
+from commands import auth, get_assign, get_problem, status, submit, update_map, contests_result, contests_status, my_contests_status,dl
 
 parser = argparse.ArgumentParser(
     prog="oj",
@@ -60,6 +60,9 @@ parser_submit.add_argument("code_file", type=str, help="file of your codes")
 parser_status = subparsers.add_parser("status", description="Get submission status")
 parser_status.add_argument("submission_id", type=str, help="the submission id")
 
+parser_status = subparsers.add_parser("dl", description="Get submission source code")
+parser_status.add_argument("submission_id", type=str, help="Your submission ID")
+
 args = parser.parse_args()
 cmd_to_func = {
     "login": auth,
@@ -71,6 +74,7 @@ cmd_to_func = {
 	"stat": lambda: contests_status(args.assign_no),
 	"mystat": lambda: my_contests_status(args.assign_no),
 	"rank": lambda: contests_result(args.assign_no),
+	"dl": lambda: dl(args.submission_id),
 }
 
 

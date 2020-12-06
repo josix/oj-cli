@@ -9,7 +9,7 @@ from util.curl import curl
 from util.colors import cyan_wrapper
 
 def update_map():
-	endpoint = "contests?offsets=0&limit=4&"
+	endpoint = "contests?offset=0&limit=10&status=0"
 	inputstr = '{'
 	result = json.loads(curl("get", endpoint=endpoint, use_x_csrf_token=True))
 	counter = 1
@@ -20,12 +20,13 @@ def update_map():
 				}
 		endpoint = "contest/problem?contest_id=" + str(contestid)
 		result2 = json.loads(curl("get", payload=payload, endpoint=endpoint, use_x_csrf_token=True))
-		q_string = result['data']['results'][i]["title"].encode("utf-8")
+		q_string2 = result['data']['results'][i]["title"]
+		q_string = result2['data'][0]['_id']
 		_pid = q_string.split()[0] + "+" + q_string.split()[1]
-		print("Found HomeWork: " + cyan_wrapper("hw" + str(counter) + " [" + q_string + "]"))
+		print("Found HomeWork: " + cyan_wrapper("hw" + str(counter) + " [" + q_string2 + "]"))
 		if i != 0:
 			inputstr += ','
-		inputstr += '"hw' + str(counter)+'":{"contest_name":"' + str(q_string) + '","contest_id":' + str(contestid) + ',"contest_problem_id":"' + str(_pid)+ '","problem_id":' + str(result2["data"][0]["id"]) + '}'
+		inputstr += '"hw' + str(counter)+'":{"contest_name":"' + str(q_string2) + '","contest_id":' + str(contestid) + ',"contest_problem_id":"' + str(_pid)+ '","problem_id":' + str(result2["data"][0]["id"]) + '}'
 		counter += 1
 	inputstr += '}'
 	f = open(ASSIGNMENT_MAPPING_PATH,'w')

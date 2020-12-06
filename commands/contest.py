@@ -187,4 +187,4 @@ def contests_result(assign_name):
 		else:
 			print(' {:3}~{:3} :{:3}  |'.format(ic+1,ic+10,i))
 		ic += 10
-	print("================================================")
+	print("================================================\nFor real score ranking,please go to the website.")
