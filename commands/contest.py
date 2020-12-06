@@ -61,10 +61,13 @@ def my_contests_status(assign_name):
 	with open(ASSIGNMENT_MAPPING_PATH, "rt") as json_in:
 		assign_to_config = json.load(json_in)
 	with open(MY_STATUS_PATH, "rt") as json_in:
-		status_config = json.load(json_in)
-	if assign_name in status_config:
-		status(status_config[assign_name]["id"])
-		return
+		try:
+			status_config = json.load(json_in)
+			if assign_name in status_config:
+				status(status_config[assign_name]["id"])
+				return
+		except:
+			print("New user~")
 	if assign_name not in assign_to_config:
 		print("Invalid Assign Number!")
 		print("Available names are:")

@@ -1,4 +1,4 @@
-#!/opt/csw/bin/python2.7
+#!/usr/bin/python2.7
 
 import argparse
 
