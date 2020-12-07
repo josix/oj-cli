@@ -27,6 +27,7 @@ def status(submission_id):
 			}
 	this_result = response_data["result"]
 	print("Result: {:33}  Score:{:4}\n".format(status_to_response[this_result],response_data["statistic_info"]["score"]))
+	#print("Result: {:33}\n".format(status_to_response[this_result]))
 	if "data" not in response_data["info"]:
 		print(gray_wrapper(response_data["statistic_info"]["err_info"]))
 		print("=================================================")
