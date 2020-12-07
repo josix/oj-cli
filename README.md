@@ -4,7 +4,7 @@
 ```
 cd ~
 git clone https://github.com/andyjjrt/oj-cli.git
-alias oj="python ~/oj-cli/oj >> ~/.profile
+alias oj="python ~/oj-cli/oj" >> ~/.profile
 source ~/.bashrc
 ```
 
