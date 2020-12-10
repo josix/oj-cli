@@ -78,5 +78,15 @@
     "contest_id": 43,
     "contest_problem_id": "1091CP1+Exercise9",
     "problem_id": 199
+  },
+  "hw9-1": {
+    "contest_id": 46,
+    "contest_problem_id": "1091CP1+Assign9-1",
+    "problem_id": 205
+  },
+  "ex10": {
+    "contest_id": 49,
+    "contest_problem_id": "1091CP1+Exercise10",
+    "problem_id": 218
   }
 }
