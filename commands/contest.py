@@ -158,7 +158,7 @@ def contests_result(assign_name):
 			8: cyan_wrapper("PAC(Partial Accepted)")
 			}
 	if result2["my_status"] == None:
-		print("Your status of " + assign_to_config[assign_name]["contest_id"] + " : No rrecord")
+		print("Your status of " + assign_to_config[assign_name]["contest_name"] + " : No rrecord")
 	else:
 		print("Your status of " + assign_to_config[assign_name]['contest_name'] + " : " + status_to_response[result2["my_status"]])
 	print("================================================")
