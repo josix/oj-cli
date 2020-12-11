@@ -26,14 +26,15 @@ def status(submission_id):
 			8: cyan_wrapper("PAC(Partial Accepted)")
 			}
 	this_result = response_data["result"]
-	print("Result: {:33}  Score:{:4}\n".format(status_to_response[this_result],response_data["statistic_info"]["score"]))
-	#print("Result: {:33}\n".format(status_to_response[this_result]))
-	if "data" not in response_data["info"]:
-		print(gray_wrapper(response_data["statistic_info"]["err_info"]))
+	try:
+		print("Result: {:33}  Score:{:4}\n".format(status_to_response[this_result],response_data["statistic_info"]["score"]))
+		if "data" not in response_data["info"]:
+			print(gray_wrapper(response_data["statistic_info"]["err_info"]))
+			print("=================================================")
+			return
+		print("|ID |Status                |   Time|  Mem| Score|")
+		for ans in result["data"]["info"]["data"]:
+			print("|#{:2}|{:33}|{:5}ms|{:3}MB| {:5}|".format(ans["test_case"],status_to_response[ans["result"]], ans["real_time"], (ans["memory"]/1048576)+1, ans["score"]))
 		print("=================================================")
-		return
-	print("|ID |Status                |   Time|  Mem| Score|")
-	for ans in result["data"]["info"]["data"]:
-		print("|#{:2}|{:33}|{:5}ms|{:3}MB| {:5}|".format(ans["test_case"],status_to_response[ans["result"]], ans["real_time"], (ans["memory"]/1048576)+1, ans["score"]))
-	print("=================================================")
-	#print(response_data["code"])
+	except:
+		print("Bad response! Please check your internet connection and ask TAs!")
