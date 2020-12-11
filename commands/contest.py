@@ -37,12 +37,15 @@ def contests_status(assign_name):
 			-1: red_wrapper("WA(Wrong Answer)"),  # WA
 			-2: cyan_wrapper("CE(Compilation Error)"),  # CE
 			0: green_wrapper("AC(Accept)"),  # AC
-			1: purple_wrapper("TLE(TimeLimitExceeded)"),  # TLE
-			3: "MLE(Memory Limit Exceeded)",  # ML 
+			1: purple_wrapper("TLE(Time Limit Exceeded)"),  # TLE
+			3: purple_wrapper("MLE(Memory Limit Exceeded)"),  # ML 
 			4: purple_wrapper("RE(Runtime Error)"),  # RE
 			8: cyan_wrapper("PAC(Partial Accepted)")
 			}
-	print('|{:12}|{:22}|   Time|  Mem|               When|'.format("User","Status"))
+	print("============================================================================")
+	print('|  Contest Name: {:58}|'.format(assign_to_config[assign_name]["contest_name"]))
+	print("============================================================================")
+	print('|{:12}|{:27}|   Time|  Mem|               When|'.format("User","Status"))
 	for i in result:
 		timestr = i["create_time"].split("T")[0]
 		timestr += " " + i["create_time"].split("T")[1].split(".")[0]
@@ -51,14 +54,14 @@ def contests_status(assign_name):
 				usrname = i["username"].encode('ascii').decode()
 			except UnicodeEncodeError:
 				usrname = "UCuser"
-			print('|{:12}|{:33}|{:5}ms|{:3}MB|{}|'.format(usrname, status_to_response[i["result"]], i["statistic_info"]["time_cost"], (i["statistic_info"]["memory_cost"]/1048576)+1, timestr))
+			print('|{:12}|{:38}|{:5}ms|{:3}MB|{}|'.format(usrname, status_to_response[i["result"]], i["statistic_info"]["time_cost"], (i["statistic_info"]["memory_cost"]/1048576)+1, timestr))
 		else:
 			try:
 				usrname = i["username"].encode('ascii').decode()
 			except UnicodeEncodeError:
 				usrname = "UCuser"
-			print('|{:12}|{:33}|{:5}--|{:3}--|{}|'.format(usrname, status_to_response[i["result"]], "-----", "---", timestr))
-
+			print('|{:12}|{:38}|{:5}--|{:3}--|{}|'.format(usrname, status_to_response[i["result"]], "-----", "---", timestr))
+	print("============================================================================")
 
 def my_contests_status(assign_name):
 	with open(ASSIGNMENT_MAPPING_PATH, "rt") as json_in:
@@ -94,25 +97,29 @@ def my_contests_status(assign_name):
 			-1: red_wrapper("WA(Wrong Answer)"),  # WA
 			-2: cyan_wrapper("CE(Compilation Error)"),  # CE
 			0: green_wrapper("AC(Accept)"),  # AC
-			2: "TLE(Time Limit Exceeded)",  # TLE
-			3: "MLE(Memory Limit Exceeded)",  # ML 
+			1: purple_wrapper("TLE(Time Limit Exceeded)"),  # TLE
+			3: purple_wrapper("MLE(Memory Limit Exceeded)"),  # ML 
 			4: purple_wrapper("RE(Runtime Error)"),  # RE
 			8: cyan_wrapper("PAC(Partial Accepted)")
 			}
-	print('|{:4}|{:22}|   {:4}|  {:3}|               When|'.format("ID  ","Status","Time","Mem"))
+	print("====================================================================")
+	print('|  Contest Name: {:50}|'.format(assign_to_config[assign_name]["contest_name"]))
+	print("====================================================================")
+	print('|{:4}|{:27}|   {:4}|  {:3}|               When|'.format("ID  ","Status","Time","Mem"))
 	inputstr = '{'
 	idx = 0
 	for i in result:
 		timestr = i["create_time"].split("T")[0]
 		timestr += " " + i["create_time"].split("T")[1].split(".")[0]
 		if i["result"] != -2:
-			print('|ID{:2}|{:33}|{:5}ms|{:3}MB|{}|'.format(idx,status_to_response[i["result"]], i["statistic_info"]["time_cost"], (i["statistic_info"]["memory_cost"]/1048576)+1, timestr))
+			print('|ID{:2}|{:38}|{:5}ms|{:3}MB|{}|'.format(idx,status_to_response[i["result"]], i["statistic_info"]["time_cost"], (i["statistic_info"]["memory_cost"]/1048576)+1, timestr))
 		else:
-			print('|ID{:2}|{:33}|{:5}--|{:3}--|{}|'.format(idx, status_to_response[i["result"]], "-----", "---", timestr))
+			print('|ID{:2}|{:38}|{:5}--|{:3}--|{}|'.format(idx, status_to_response[i["result"]], "-----", "---", timestr))
 		if idx != 0:
 			inputstr += ','
 		inputstr += '"ID' + str(idx) + '":{"id":"' + i["id"] + '"}'
 		idx+=1
+	print("====================================================================")
 	inputstr += '}'
 	f = open(MY_STATUS_PATH,'w')
 	f.write(inputstr)
@@ -152,8 +159,8 @@ def contests_result(assign_name):
 			-1: red_wrapper("WA(Wrong Answer)"),  # WA
 			-2: cyan_wrapper("CE(Compilation Error)"),  # CE
 			0: green_wrapper("AC(Accept)"),  # AC
-			2: "TLE(Time Limit Exceeded)",  # TLE
-			3: "MLE(Memory Limit Exceeded)",  # ML 
+			1: purple_wrapper("TLE(Time Limit Exceeded)"),  # TLE
+			3: purple_wrapper("MLE(Memory Limit Exceeded)"),  # ML 
 			4: purple_wrapper("RE(Runtime Error)"),  # RE
 			8: cyan_wrapper("PAC(Partial Accepted)")
 			}
