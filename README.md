@@ -1,6 +1,7 @@
 # oj-cli
 ## Installation 
 ### Installation from source code
+The `install.sh` is an auto script to install.
 ```
 cd ~
 git clone https://github.com/andyjjrt/oj-cli.git
@@ -9,6 +10,8 @@ chmod 700 install.sh
 chmod 700 update.sh
 ./install.sh
 ```
+If you need to update the cli, please use `update.sh` which is in the `oj-cli` folder to update.
+
 
 ### Commands
 ### `oj login`
