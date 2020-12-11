@@ -1,6 +1,6 @@
 # oj-cli
 ## Installation 
-### Installation from source code & Ghost Installation
+### Installation from source code
 ```
 cd ~
 git clone https://github.com/andyjjrt/oj-cli.git
