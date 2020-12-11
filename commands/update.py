@@ -23,7 +23,13 @@ def update_map():
 		if result2["error"] == "error":
 			print("Error : " + result2["data"])
 			continue
-		q_string2 = result['data']['results'][i]["title"]
+		q_string3 = result['data']['results'][i]["title"]
+		q_string2 = ""
+		for q1 in q_string3.split(" "):
+			try:
+				q_string2 += q1.encode("ascii") + " "
+			except:
+				q_string2 += "XX "
 		q_string = result2['data'][0]['_id']
 		_pid = q_string.split()[0] + "+" + q_string.split()[1]
 		print("Found HomeWork: " + cyan_wrapper("hw" + str(counter) + " [" + q_string2 + "]"))
