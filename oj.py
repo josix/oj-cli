@@ -1,4 +1,3 @@
-#!/opt/csw/bin/python2.7
 
 import argparse
 

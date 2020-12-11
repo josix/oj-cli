@@ -20,11 +20,14 @@ def update_map():
 				}
 		endpoint = "contest/problem?contest_id=" + str(contestid)
 		result2 = json.loads(curl("get", payload=payload, endpoint=endpoint, use_x_csrf_token=True))
+		if result2["error"] == "error":
+			print("Error : " + result2["data"])
+			continue
 		q_string2 = result['data']['results'][i]["title"]
 		q_string = result2['data'][0]['_id']
 		_pid = q_string.split()[0] + "+" + q_string.split()[1]
 		print("Found HomeWork: " + cyan_wrapper("hw" + str(counter) + " [" + q_string2 + "]"))
-		if i != 0:
+		if counter != 1:
 			inputstr += ','
 		inputstr += '"hw' + str(counter)+'":{"contest_name":"' + str(q_string2) + '","contest_id":' + str(contestid) + ',"contest_problem_id":"' + str(_pid)+ '","problem_id":' + str(result2["data"][0]["id"]) + '}'
 		counter += 1

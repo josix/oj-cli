@@ -29,6 +29,9 @@ def contests_status(assign_name):
         contest_id
     )
 	result = json.loads(curl("get", endpoint=endpoint, use_x_csrf_token=True))
+	if result["error"] == "error":
+		print("Error : " + result["data"])
+		return
 	result = result["data"]["results"]
 	status_to_response = {
 			-1: red_wrapper("WA(Wrong Answer)"),  # WA
@@ -67,7 +70,7 @@ def my_contests_status(assign_name):
 				status(status_config[assign_name]["id"])
 				return
 		except:
-			print("New user~")
+			pass
 	if assign_name not in assign_to_config:
 		print("Invalid Assign Number!")
 		print("Available names are:")
@@ -83,6 +86,9 @@ def my_contests_status(assign_name):
         contest_id
     )
 	result = json.loads(curl("get", endpoint=endpoint, use_x_csrf_token=True))
+	if result["error"] == "error":
+		print("Error : " + result["data"])
+		return
 	result = result["data"]["results"]
 	status_to_response = {
 			-1: red_wrapper("WA(Wrong Answer)"),  # WA
@@ -130,10 +136,16 @@ def contests_result(assign_name):
         contest_id
     )
 	result = json.loads(curl("get", endpoint=endpoint, use_x_csrf_token=True))
+	if result["error"] == "error":
+		print("Error : " + result["data"])
+		return
 	endpoint = "contest/problem?contest_id={}".format(
         contest_id
     )
 	result2 = json.loads(curl("get", endpoint=endpoint, use_x_csrf_token=True))
+	if result2["error"] == "error":
+		print("Error : " + result2["data"])
+		return
 	result = result["data"]["results"]
 	result2 = result2["data"][0]
 	status_to_response = {
@@ -146,14 +158,16 @@ def contests_result(assign_name):
 			8: cyan_wrapper("PAC(Partial Accepted)")
 			}
 	if result2["my_status"] == None:
-		print("Your status of " + assign_name + " : No rrecord")
+		print("Your status of " + assign_to_config[assign_name]["contest_id"] + " : No rrecord")
 	else:
-		print("Your status of " + assign_name + " : " + status_to_response[result2["my_status"]])
+		print("Your status of " + assign_to_config[assign_name]['contest_name'] + " : " + status_to_response[result2["my_status"]])
 	print("================================================")
 	blockstatus=[0,0,0,0,0,0,0,0,0,0]
 	for usr in result:
 		blocks = usr["total_score"]/10
 		blocks -= 1
+		if blocks <= 0:
+			blocks = 0
 		blockstatus[blocks] += 1
 	ic = 0
 	for i in blockstatus:
@@ -190,4 +204,4 @@ def contests_result(assign_name):
 		else:
 			print(' {:3}~{:3} :{:3}  |'.format(ic+1,ic+10,i))
 		ic += 10
-	print("================================================\nFor real score ranking,please go to the website.")
+	print("================================================\nFor real time score ranking, please go to the website.")
