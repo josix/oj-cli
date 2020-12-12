@@ -1,16 +1,35 @@
 # oj-cli
 ## Installation 
-### Installation from source code
-The `install.sh` is an auto script to install.
+### Installation from source code in GHOST
+
+For user who has installed the old oj-cli, please go to your `.profile` to remove
+`export PATH="~f103207425/.local/bin:$PATH"`
+first, or the cli will not work.
+
 ```
 cd ~
 git clone https://github.com/andyjjrt/oj-cli.git
 cd oj-cli
-chmod 700 install.sh
 chmod 700 update.sh
-./install.sh
+echo 'alias oj="python2.7 ~/oj-cli/oj"' >> ~/.profile
+echo 'alias oju="~/oj-cli/update.sh"' >> ~/.profile
+source ~/.profile
 ```
-If you need to update the cli, please use `update.sh` which is in the `oj-cli` folder to update.
+If you need to update the cli, type `oju` to update.
+
+### Installation from source code in other devices
+
+```
+cd ~
+git clone https://github.com/andyjjrt/oj-cli.git
+cd oj-cli
+chmod 700 update.sh
+echo 'alias oj="python2.7 ~/oj-cli/oj"' >> ~/.bashrc
+echo 'alias oju="~/oj-cli/update.sh"' >> ~/.bashrc
+source ~/.bashrc
+```
+If you need to update the cli, type `oju` to update.
+
 
 
 ### Commands
