@@ -7,4 +7,5 @@ then
 	echo 'alias oj="python ~/oj-cli/oj"' >> .profile
 fi
 source ~/.profile
-echo "Installed successfully! use [oj login] to login."
+echo "Installed successfully! Please login first."
+python oj login
