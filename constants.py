@@ -10,8 +10,11 @@ COOKIES_DIR = home + "/.cookies/"
 COOKIES_NAME = "oj_cookies"
 COOKIES_PATH = COOKIES_DIR + COOKIES_NAME
 
-ASSIGNMENT_MAPPING_PATH = dirname(realpath(__file__)) + "/assign_mapping.json"
-MY_STATUS_PATH = dirname(realpath(__file__)) + "/status_log.json"
+ASSIGNMENT_MAPPING_PATH = home + "/oj_statement/assign_mapping.json"
+MY_STATUS_PATH = home + "/oj_statement/status_log.json"
+PROBLEM_MAPPING_PATH = home + "/oj_statement/problem_mapping.json"
+STATEMENT_PATH = home + "/oj_statement/"
+
 
 TEMPLATE_FILENAME = {
     "C": "main.c",

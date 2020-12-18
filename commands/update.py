@@ -3,12 +3,30 @@ import os
 from getpass import getpass
 
 from constants import COOKIES_DIR
-from constants import ASSIGNMENT_MAPPING_PATH
+from constants import ASSIGNMENT_MAPPING_PATH, PROBLEM_MAPPING_PATH, STATEMENT_PATH
 from util.common import get_csrf_token
 from util.curl import curl
-from util.colors import cyan_wrapper
+from util.colors import cyan_wrapper, green_wrapper
 
 def update_map():
+	if not os.path.isdir(STATEMENT_PATH):
+		os.mkdir(STATEMENT_PATH)
+	endpoint = "problem?offset=0&limit=200"
+	inputstr = '{'
+	result = json.loads(curl("get", endpoint=endpoint, use_x_csrf_token=True))
+	counter_1 = 1
+	for i in range(0,len(result['data']['results'])):
+		real_id = result['data']['results'][i]['id']
+		display_id = result['data']['results'][i]['_id'].replace(" ","_")
+		if counter_1 != 1:
+			inputstr += ','
+		inputstr += '"' + str(display_id) + '":{"_id":"' + str(real_id) + '"}'
+		counter_1+=1
+	inputstr += '}'
+	f = open(PROBLEM_MAPPING_PATH,'w')
+	f.write(inputstr.encode("utf-8"))
+	f.close
+	print(green_wrapper("Updated problems successfully!"))
 	endpoint = "contests?offset=0&limit=10&status=0"
 	inputstr = '{'
 	result = json.loads(curl("get", endpoint=endpoint, use_x_csrf_token=True))
@@ -38,7 +56,10 @@ def update_map():
 		inputstr += '"hw' + str(counter)+'":{"contest_name":"' + str(q_string2) + '","contest_id":' + str(contestid) + ',"contest_problem_id":"' + str(_pid)+ '","problem_id":' + str(result2["data"][0]["id"]) + '}'
 		counter += 1
 	inputstr += '}'
+	if not os.path.isdir(STATEMENT_PATH):
+		os.mkdir(STATEMENT_PATH)
 	f = open(ASSIGNMENT_MAPPING_PATH,'w')
 	f.write(inputstr.encode("utf-8"))
 	f.close
-	print("Updated successfully!")
+	print(green_wrapper("Updated assign successfully!"))
+	
