@@ -3,9 +3,10 @@ import os
 from getpass import getpass
 
 from constants import COOKIES_DIR
+from constants import COOKIES_PATH
 from util.common import get_csrf_token
 from util.curl import curl
-
+from util.colors import green_wrapper
 
 def login():
     username = raw_input("Username: ")
@@ -18,7 +19,8 @@ def login():
     result = curl("post", payload=payload, endpoint="login/", use_x_csrf_token=True)
     result = json.loads(result)
     print("%s!!" % result["data"])
-
+    os.chmod(COOKIES_PATH, 0700)
+    print("Cookie File " + green_wrapper(COOKIES_PATH) + " has been protected automatically.(700)") 
 
 def fetch_csrf_token():
     if not os.path.isdir(COOKIES_DIR):

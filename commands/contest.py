@@ -2,9 +2,7 @@ import json
 import os
 from datetime import datetime
 
-from constants import ASSIGNMENT_MAPPING_PATH
-from constants import COOKIES_DIR
-from constants import MY_STATUS_PATH
+from constants import ASSIGNMENT_MAPPING_PATH, COOKIES_DIR, MY_STATUS_PATH, STATEMENT_PATH
 from .status import status
 from util.common import get_csrf_token
 from util.curl import curl
@@ -66,14 +64,14 @@ def contests_status(assign_name):
 def my_contests_status(assign_name):
 	with open(ASSIGNMENT_MAPPING_PATH, "rt") as json_in:
 		assign_to_config = json.load(json_in)
-	with open(MY_STATUS_PATH, "rt") as json_in:
-		try:
+	try:
+		with open(MY_STATUS_PATH, "rt") as json_in:
 			status_config = json.load(json_in)
 			if assign_name in status_config:
 				status(status_config[assign_name]["id"])
 				return
-		except:
-			pass
+	except:
+		pass
 	if assign_name not in assign_to_config:
 		print("Invalid Assign Number!")
 		print("Available names are:")
@@ -121,9 +119,11 @@ def my_contests_status(assign_name):
 		idx+=1
 	print("====================================================================")
 	inputstr += '}'
-	f = open(MY_STATUS_PATH,'w')
-	f.write(inputstr)
-	f.close
+	if not os.path.isdir(STATEMENT_PATH):
+		os.mkdir(STATEMENT_PATH)
+	f1 = open(MY_STATUS_PATH,'w')
+	f1.write(inputstr.encode('utf-8'))
+	f1.close
 
 def contests_result(assign_name):
 	with open(ASSIGNMENT_MAPPING_PATH, "rt") as json_in:
@@ -165,7 +165,7 @@ def contests_result(assign_name):
 			8: cyan_wrapper("PAC(Partial Accepted)")
 			}
 	if result2["my_status"] == None:
-		print("Your status of " + assign_to_config[assign_name]["contest_name"] + " : No rrecord")
+		print("Your status of " + assign_to_config[assign_name]["contest_name"] + " : No record")
 	else:
 		print("Your status of " + assign_to_config[assign_name]['contest_name'] + " : " + status_to_response[result2["my_status"]])
 	print("================================================")

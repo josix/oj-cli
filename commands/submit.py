@@ -58,5 +58,5 @@ def submit(assign_number, filename):
         "Your submission Id is {}\n"
         "Getting submission status...".format(submission_id)
     )
-    time.sleep(0.6)
+    time.sleep(1.0)
     status(submission_id)

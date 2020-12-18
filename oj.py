@@ -1,7 +1,7 @@
-
+#!/opt/csw/bin/python2.7
 import argparse
 
-from commands import auth, get_assign, get_problem, status, submit, update_map, contests_result, contests_status, my_contests_status,dl
+from commands import auth, get_assign, get_problem, status, submit, update_map, contests_result, contests_status, my_contests_status,dl, problem_submit
 
 parser = argparse.ArgumentParser(
     prog="oj",
@@ -59,8 +59,17 @@ parser_submit.add_argument("code_file", type=str, help="file of your codes")
 parser_status = subparsers.add_parser("status", description="Get submission status")
 parser_status.add_argument("submission_id", type=str, help="the submission id")
 
-parser_status = subparsers.add_parser("dl", description="Get submission source code")
-parser_status.add_argument("submission_id", type=str, help="Your submission ID")
+parser_dl = subparsers.add_parser("dl", description="Get submission source code")
+parser_dl.add_argument("submission_id", type=str, help="Your submission ID")
+
+parser_problem_submit = subparsers.add_parser(
+    "problem_submit", description="Submit your probkem answer and grade your code"
+)
+parser_problem_submit.add_argument("problem_id", type=str, help="problem id")
+parser_problem_submit.add_argument("language", type=str, help="the language of your code")
+parser_problem_submit.add_argument("code_file", type=str, help="file of your codes")
+
+
 
 args = parser.parse_args()
 cmd_to_func = {
@@ -69,6 +78,7 @@ cmd_to_func = {
     "get_assign": lambda: get_assign(args.assign_no),
     "get_problem": lambda: get_problem(args.problem_id),
     "submit": lambda: submit(args.assign_no, args.code_file),
+	"problem_submit": lambda: problem_submit(args.problem_id, args.language, args.code_file), 
     "status": lambda: status(args.submission_id),
 	"stat": lambda: contests_status(args.assign_no),
 	"mystat": lambda: my_contests_status(args.assign_no),
