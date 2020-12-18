@@ -17,6 +17,9 @@ source ~/.profile
 ```
 If you need to update the cli, type `oju` to update.
 
+#### Notice! 
+When this version of cli published on ghost , it will change the way to install.
+
 ### Installation from source code in other devices
 
 ```
@@ -29,6 +32,8 @@ echo 'alias oju="~/oj-cli/update.sh"' >> ~/.bashrc
 source ~/.bashrc
 ```
 If you need to update the cli, type `oju` to update.
+
+If your shell is different like `ash`, you may need to change `.bashrc` to `.profile`.
 
 
 
@@ -56,7 +61,7 @@ assign_no represents your assign number like `hw1`, `hw2` according to your upda
 ### Example
 ```
 $ oj get_assign hw2
-<invalid sample>
+
 $ oj get_assign hw4
 Invalid Assign Number!
 Available names are:
@@ -83,11 +88,9 @@ code_file is the path to your script. `oj` will read the file then submit this a
 ```
 $ oj submit hw2 hw2.c
 Submit successfully!
-Your submission Id is xxxxxxxxxxxxxxxxxx
 Getting submission status...
 =================================================
 Result: AC(Accept)              Score: 100
-
 |ID |Status                |   Time|  Mem| Score|
 |#1 |AC(Accept)            |    0ms|  2MB|    20|
 |#2 |AC(Accept)            |    2ms|  2MB|    20|
@@ -96,6 +99,44 @@ Result: AC(Accept)              Score: 100
 |#5 |AC(Accept)            |    5ms|  2MB|    20| 
 ================================================= 
 ```
+
+
+### `oj problem_submit <problem_no> <language> <code_file>`
+#### About
+Use `oj problem_submit <problem_no> <language> <code_file>` to submit your code to problem and return the results. 
+
+#### Usage
+`oj problem_submit` required three arguments to execute.
+
+##### assign_no
+assign_no represents your assign number like `hw1`, `hw2` according to your updates. `oj-cli` will prompt `Invalid Assign Number!` if the input assign number has not opened and give valid assign numbers. 
+
+##### language
+language is your coding language. The avaliable languages now are
+C, C++, Python2, Python3, Golang, Java
+
+Notice your capital letter!!
+
+##### code_file
+code_file is the path to your script. `oj` will read the file then submit this answer to OnlineJudge Service.
+
+#### Example
+```
+$ oj problem_submit 1091CP1_Exercise8 C ex8.c
+Submit successfully!!
+Getting submission status...
+========================================================
+Result: AC(Accept)                     Score: 100
+|ID |Status                       |   Time|  Mem| Score|
+|#1 |AC(Accept)                   |    1ms|  2MB|    20|
+|#2 |AC(Accept)                   |    1ms|  2MB|    20|
+|#3 |AC(Accept)                   |    1ms|  2MB|    20|
+|#4 |AC(Accept)                   |    2ms|  2MB|    20|
+|#5 |AC(Accept)                   |    1ms|  2MB|    20|
+========================================================
+
+```
+
 
 
 ### `oj rank <assign_no>`
@@ -130,11 +171,12 @@ For real score ranking,please go to the website.
 ### About
 Use `oj update` to get the latest assignments.
 ### Usage
-No argument required. Only enter `oj update` and it will automatically get the assignments.
+No argument required. Only enter `oj update` and it will automatically get the assignments and the problems.
 
 ### Example
 ```
 $ oj update
+Updated problems successfully!
 Found HomeWork: hw1 [Exercise 9]
 Found HomeWork: hw2 [Assignment 9]
 Updated successfully! 
@@ -152,12 +194,17 @@ assign_no represents your assign number like `hw1`, `hw2` according to your upda
 ### Example
 ```
 $ oj stat hw2
-|User        |Status                |   Time|  Mem|               When|
-|1097030xx   |AC(Accept)            |   71ms|  2MB|2020-12-06 06:46:00|
-|1097030xx   |RE(Runtime Error)     |    0ms|  2MB|2020-12-06 06:38:57|
-|1097030xx   |WA(Wrong Answer)      |   66ms|  2MB|2020-12-06 06:25:41|
-|1097030xx   |RE(Runtime Error)     |    0ms|  2MB|2020-12-06 06:22:08|
-|1097030xx   |RE(Runtime Error)     |    0ms|  2MB|2020-12-06 06:19:15|
+============================================================================
+|  Contest Name: Exercise 11                                               |
+============================================================================
+|User        |Status                     |   Time|  Mem|               When|
+|108xxxxxx   |WA(Wrong Answer)           |    0ms|  2MB|2020-12-18 10:31:12|
+|109xxxxxx   |AC(Accept)                 |    0ms|  2MB|2020-12-18 10:07:14|
+|109xxxxxx   |PAC(Partial Accepted)      |    0ms|  2MB|2020-12-18 09:20:10|
+|109xxxxxx   |PAC(Partial Accepted)      |   21ms|  2MB|2020-12-18 09:20:02|
+|109xxxxxx   |PAC(Partial Accepted)      |   17ms|  2MB|2020-12-18 09:07:19|
+|109xxxxxx   |PAC(Partial Accepted)      |    1ms|  4MB|2020-12-18 08:50:13|
+============================================================================
 ...
 ```
 
@@ -175,18 +222,17 @@ The ID will only update if you type `oj mystat <hwx>`
 
 ### Example
 ```
-$ oj mystat hw2
-|ID  |Status                |   Time|  Mem|               When|
-|ID 0|AC(Accept)            |   71ms|  2MB|2020-12-06 06:46:00|
-|ID 1|WA(Wrong Answer)      |   66ms|  2MB|2020-12-06 06:25:41|
-|ID 2|AC(Accept)            |   72ms|  2MB|2020-12-03 13:35:16|
-|ID 3|CE(Compilation Error) |-------|-----|2020-12-03 13:34:26|
-|ID 4|PAC(Partial Accepted) |   47ms|  2MB|2020-12-03 12:17:22|
-|ID 5|PAC(Partial Accepted) |   46ms|  2MB|2020-12-03 12:12:47| 
+$ oj mystat hw1
+====================================================================
+|  Contest Name: Exercise 11                                       |
+====================================================================
+|ID  |Status                     |   Time|  Mem|               When|
+|ID 0|AC(Accept)                 |    0ms|  2MB|2020-12-17 10:39:13|
+====================================================================
+
 $ oj mystat ID4
 =================================================
 Result: PAC(Partial Accepted)   Score:  20
-
 |ID |Status                |   Time|  Mem| Score|
 |#1 |AC(Accept)            |    1ms|  2MB|    20|
 |#2 |WA(Wrong Answer)      |    2ms|  2MB|     0|
@@ -211,7 +257,6 @@ The ID will only update if you type `oj mystat <hwx>`
 $ oj dl ID0
 =================================================
 Result: AC(Accept)              Score: 100
-
 |ID |Status                |   Time|  Mem| Score|
 |#1 |AC(Accept)            |    0ms|  2MB|    20|
 |#2 |AC(Accept)            |    2ms|  2MB|    20|
