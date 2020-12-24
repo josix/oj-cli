@@ -93,5 +93,10 @@
     "contest_id": 53,
     "contest_problem_id": "1091CP1+Exercise11",
     "problem_id": 227
+  },
+  "ex12": {
+    "contest_id": 58,
+    "contest_problem_id": "1091CP1+Exercise12",
+    "problem_id": 233
   }
 }
