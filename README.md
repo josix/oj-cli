@@ -2,22 +2,12 @@
 ## Installation 
 ### Installation in NCCU GHOST
 
-For user who has installed the old oj-cli, please go to your `.profile` to remove
-`export PATH="~f103207425/.local/bin:$PATH"`
-first, or the cli will not work.
-
 ```
-cd ~
-git clone https://github.com/andyjjrt/oj-cli.git
-cd oj-cli
-echo 'alias oj="python2.7 ~/oj-cli/oj"' >> ~/.profile
+echo 'alias oj="python2.7 ~s10940/oj-cli/oj.py"' >> ~/.profile
 source ~/.profile
 ```
 
-#### Notice! 
-When this version of cli published on ghost , it will change the way to install.
-
-### Installation from source code in other devices
+### Installation from source code
 
 ```
 cd ~
@@ -26,10 +16,9 @@ cd oj-cli
 echo 'alias oj="python2.7 ~/oj-cli/oj"' >> ~/.bashrc
 source ~/.bashrc
 ```
-If you need to update the cli, type `oju` to update.
 
 If your shell is different like `ash`, you may need to change `.bashrc` to `.profile`.
-
+After installation, please modify `CONTEST_NAME` variable in `constants.py` to the target contest name.
 
 
 ### Commands
