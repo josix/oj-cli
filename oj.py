@@ -32,7 +32,7 @@ parser_contest.add_argument("assign_no", type=str, help="assignment number or su
 parser_contest.set_defaults(func=my_contests_status)
 
 parser_contest = subparsers.add_parser(
-    "stat", description="Show the latest 20 submissions of the specific contest."
+    "status", description="Show the latest 20 submissions of the specific contest."
 )
 parser_contest.add_argument("assign_no", type=str, help="assignment number")
 parser_contest.set_defaults(func=contests_status)
@@ -56,14 +56,11 @@ parser_submit = subparsers.add_parser(
 parser_submit.add_argument("assign_no", type=str, help="assignment number")
 parser_submit.add_argument("code_file", type=str, help="file of your codes")
 
-parser_status = subparsers.add_parser("status", description="Get submission status")
-parser_status.add_argument("submission_id", type=str, help="the submission id")
-
 parser_dl = subparsers.add_parser("dl", description="Get submission source code")
 parser_dl.add_argument("submission_id", type=str, help="Your submission ID")
 
 parser_problem_submit = subparsers.add_parser(
-    "problem_submit", description="Submit your probkem answer and grade your code"
+    "submit_p", description="Submit your probkem answer and grade your code"
 )
 parser_problem_submit.add_argument("problem_id", type=str, help="problem id")
 parser_problem_submit.add_argument("language", type=str, help="the language of your code")
@@ -78,9 +75,8 @@ cmd_to_func = {
     "get_assign": lambda: get_assign(args.assign_no),
     "get_problem": lambda: get_problem(args.problem_id),
     "submit": lambda: submit(args.assign_no, args.code_file),
-	"problem_submit": lambda: problem_submit(args.problem_id, args.language, args.code_file), 
-    "status": lambda: status(args.submission_id),
-	"stat": lambda: contests_status(args.assign_no),
+	"submit_p": lambda: problem_submit(args.problem_id, args.language, args.code_file), 
+	"status": lambda: contests_status(args.assign_no),
 	"mystat": lambda: my_contests_status(args.assign_no),
 	"rank": lambda: contests_result(args.assign_no),
 	"dl": lambda: dl(args.submission_id),

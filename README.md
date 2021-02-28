@@ -1,6 +1,6 @@
 # oj-cli
 ## Installation 
-### Installation from source code in GHOST
+### Installation in NCCU GHOST
 
 For user who has installed the old oj-cli, please go to your `.profile` to remove
 `export PATH="~f103207425/.local/bin:$PATH"`
@@ -10,12 +10,9 @@ first, or the cli will not work.
 cd ~
 git clone https://github.com/andyjjrt/oj-cli.git
 cd oj-cli
-chmod 700 update.sh
 echo 'alias oj="python2.7 ~/oj-cli/oj"' >> ~/.profile
-echo 'alias oju="~/oj-cli/update.sh"' >> ~/.profile
 source ~/.profile
 ```
-If you need to update the cli, type `oju` to update.
 
 #### Notice! 
 When this version of cli published on ghost , it will change the way to install.
@@ -26,9 +23,7 @@ When this version of cli published on ghost , it will change the way to install.
 cd ~
 git clone https://github.com/andyjjrt/oj-cli.git
 cd oj-cli
-chmod 700 update.sh
 echo 'alias oj="python2.7 ~/oj-cli/oj"' >> ~/.bashrc
-echo 'alias oju="~/oj-cli/update.sh"' >> ~/.bashrc
 source ~/.bashrc
 ```
 If you need to update the cli, type `oju` to update.
@@ -58,16 +53,10 @@ Use `oj get_assign <assign_no>` to download the latest assignment from contest. 
 ##### assign_no
 assign_no represents your assign number like `hw1`, `hw2` according to your updates. `oj-cli` will prompt `Invalid Assign Number!` if the input assign number has not opened and give valid assign numbers.
 
-### Example
+#### Example
 ```
-$ oj get_assign hw2
-
-$ oj get_assign hw4
-Invalid Assign Number!
-Available names are:
-- hw2 [Assignment 9]
-- hw1 [Exercise 9]
-If you want to update latest homework assignment, type: [oj update] to update. 
+$ oj get_assign hw1
+Made a [hw1] folder in your current directory.
 ```
 
 
@@ -101,15 +90,15 @@ Result: AC(Accept)              Score: 100
 ```
 
 
-### `oj problem_submit <problem_no> <language> <code_file>`
+### `oj submit_p <problem_no> <language> <code_file>`
 #### About
-Use `oj problem_submit <problem_no> <language> <code_file>` to submit your code to problem and return the results. 
+Use `oj submit_p <problem_no> <language> <code_file>` to submit your code to problem and return the results. 
 
 #### Usage
-`oj problem_submit` required three arguments to execute.
+`oj submit_p` required three arguments to execute.
 
-##### assign_no
-assign_no represents your assign number like `hw1`, `hw2` according to your updates. `oj-cli` will prompt `Invalid Assign Number!` if the input assign number has not opened and give valid assign numbers. 
+##### problem_no
+assign_no represents your assign number like `1`, `2` according to your updates. `oj-cli` will prompt `Invalid Assign Number!` if the input assign number soes not exist. Notice that blanks in `problem_no` will be replaced to "+"
 
 ##### language
 language is your coding language. The avaliable languages now are
@@ -138,16 +127,15 @@ Result: AC(Accept)                     Score: 100
 ```
 
 
-
 ### `oj rank <assign_no>`
-### About
+#### About
 Use `oj rank <assign_no>` to view the class result of this assign.
-### Usage
+#### Usage
 `oj rank` only required one argument to execute.
 #### assign_no
 assign_no represents your assign number like `hw1`, `hw2` according to your updates. `oj-cli` will prompt `Invalid Assign Number!` if the input assign number has not opened and give valid assign numbers. 
 
-### Example
+#### Example
 ```
 $ oj rank hw2
 Your status of hw2 : AC(Accept)
@@ -168,34 +156,34 @@ For real score ranking,please go to the website.
 
 
 ### `oj update`
-### About
+#### About
 Use `oj update` to get the latest assignments.
-### Usage
+#### Usage
 No argument required. Only enter `oj update` and it will automatically get the assignments and the problems.
 
-### Example
+#### Example
 ```
 $ oj update
 Updated problems successfully!
-Found HomeWork: hw1 [Exercise 9]
-Found HomeWork: hw2 [Assignment 9]
-Updated successfully! 
+Found HomeWork: hw01 [Nim!]
+Found HomeWork: ex01 [Tree Postorder]
+Updated assign successfully!
 ```
 
 
-### `oj stat <assign_no>`
-### About
-Use `oj stat <assign_no>` to view the latest 20 submissions of this contest.
-### Usage
-`oj stat` only required one argument to execute.
-#### assign_no
+### `oj status <assign_no>`
+#### About
+Use `oj status <assign_no>` to view the latest 20 submissions of this contest.
+#### Usage
+`oj status` only required one argument to execute.
+##### assign_no
 assign_no represents your assign number like `hw1`, `hw2` according to your updates. `oj-cli` will prompt `Invalid Assign Number!` if the input assign number has not opened and give valid assign numbers. 
 
-### Example
+#### Example
 ```
-$ oj stat hw2
+$ oj status hw2
 ============================================================================
-|  Contest Name: Exercise 11                                               |
+|  Contest Name: hw2                                             |
 ============================================================================
 |User        |Status                     |   Time|  Mem|               When|
 |108xxxxxx   |WA(Wrong Answer)           |    0ms|  2MB|2020-12-18 10:31:12|
@@ -209,22 +197,22 @@ $ oj stat hw2
 ```
 
 ### `oj mystat <option>`
-### About
+#### About
 Use `oj mystat <option>` to view your latest 20 submissions of this contest, each of the submission has the specific ID.
-### Usage
+#### Usage
 `oj mystat` only required one argument to execute.
-#### option
+##### option
 Here we have two options:
 1. assign_no represents your assign number like `hw1`, `hw2` according to your updates. `oj-cli` will prompt `Invalid Assign Number!` if the input assign number has not opened and give valid assign numbers.  
 2. IDx is the specific ID that `oj mystat <hwx>` gives you, here you can see details of this submition.
 #### Note
 The ID will only update if you type `oj mystat <hwx>`
 
-### Example
+#### Example
 ```
 $ oj mystat hw1
 ====================================================================
-|  Contest Name: Exercise 11                                       |
+|  Contest Name: hw1                                     |
 ====================================================================
 |ID  |Status                     |   Time|  Mem|               When|
 |ID 0|AC(Accept)                 |    0ms|  2MB|2020-12-17 10:39:13|
@@ -243,16 +231,16 @@ Result: PAC(Partial Accepted)   Score:  20
 ```
 
 ### `oj dl <ID>`
-### About
+#### About
 Use `oj dl <ID>` to download your specific submission's source code.
-### Usage
+#### Usage
 `oj dl` only required one argument to execute.
 #### option
 ID is the specific ID that `oj mystat <hwx>` gives you, here you can see details of this submition.
 #### Note
 The ID will only update if you type `oj mystat <hwx>`
 
-### Example
+#### Example
 ```
 $ oj dl ID0
 =================================================
@@ -267,4 +255,5 @@ Result: AC(Accept)              Score: 100
 Downloaded your file!!!
 File name:1097030xx|xxxxxxxxxxxxxxxxxxxxxxx.c in yor current directory. 
 ```
+
 

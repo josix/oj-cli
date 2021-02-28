@@ -41,7 +41,7 @@ def contests_status(assign_name):
 			8: cyan_wrapper("PAC(Partial Accepted)")
 			}
 	print("============================================================================")
-	print('|  Contest Name: {:58}|'.format(assign_to_config[assign_name]["contest_name"]))
+	print('|  Contest Name: {:58}|'.format(assign_to_config[assign_name]["contest_problem_id"]))
 	print("============================================================================")
 	print('|{:12}|{:27}|   Time|  Mem|               When|'.format("User","Status"))
 	for i in result:
@@ -101,7 +101,7 @@ def my_contests_status(assign_name):
 			8: cyan_wrapper("PAC(Partial Accepted)")
 			}
 	print("====================================================================")
-	print('|  Contest Name: {:50}|'.format(assign_to_config[assign_name]["contest_name"]))
+	print('|  Contest Name: {:50}|'.format(assign_to_config[assign_name]["contest_problem_id"]))
 	print("====================================================================")
 	print('|{:4}|{:27}|   {:4}|  {:3}|               When|'.format("ID  ","Status","Time","Mem"))
 	inputstr = '{'
@@ -165,9 +165,9 @@ def contests_result(assign_name):
 			8: cyan_wrapper("PAC(Partial Accepted)")
 			}
 	if result2["my_status"] == None:
-		print("Your status of " + assign_to_config[assign_name]["contest_name"] + " : No record")
+		print("Your status of " + assign_to_config[assign_name]["contest_problem_id"] + " : No record")
 	else:
-		print("Your status of " + assign_to_config[assign_name]['contest_name'] + " : " + status_to_response[result2["my_status"]])
+		print("Your status of " + assign_to_config[assign_name]['contest_problem_id'] + " : " + status_to_response[result2["my_status"]])
 	print("================================================")
 	blockstatus=[0,0,0,0,0,0,0,0,0,0]
 	for usr in result:

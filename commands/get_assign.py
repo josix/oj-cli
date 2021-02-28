@@ -40,7 +40,7 @@ def get_assign(assign_name):
         template = data["template"]["C"]
     else:
         template = "#include <stdio.h>\n\nint main() {\n  \n  return 0;\n}\n"
-    dir_name = data["_id"].split(' ')[1]
+    dir_name = data["_id"]
     print("Made a [{}] folder in your current directory.".format(dir_name))
     template_path = dir_name + "/main.c"
     if not os.path.isdir(dir_name):
