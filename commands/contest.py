@@ -41,7 +41,7 @@ def contests_status(assign_name):
 			8: cyan_wrapper("PAC(Partial Accepted)")
 			}
 	print("============================================================================")
-	print('|  Contest Name: {:58}|'.format(assign_to_config[assign_name]["contest_problem_id"]))
+	print('|  Contest Name: {:58}|'.format(assign_to_config[assign_name]["contest_problem_id"] + " [" + assign_to_config[assign_name]["contest_name"] + "]"))
 	print("============================================================================")
 	print('|{:12}|{:27}|   Time|  Mem|               When|'.format("User","Status"))
 	for i in result:
@@ -101,7 +101,7 @@ def my_contests_status(assign_name):
 			8: cyan_wrapper("PAC(Partial Accepted)")
 			}
 	print("====================================================================")
-	print('|  Contest Name: {:50}|'.format(assign_to_config[assign_name]["contest_problem_id"]))
+	print('|  Contest Name: {:50}|'.format(assign_to_config[assign_name]["contest_problem_id"] + " [" + assign_to_config[assign_name]["contest_name"] + "]"))
 	print("====================================================================")
 	print('|{:4}|{:27}|   {:4}|  {:3}|               When|'.format("ID  ","Status","Time","Mem"))
 	inputstr = '{'
