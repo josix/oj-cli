@@ -11,6 +11,7 @@ from util.colors import cyan_wrapper, green_wrapper
 def update_map():
 	if not os.path.isdir(STATEMENT_PATH):
 		os.mkdir(STATEMENT_PATH)
+	os.chmod(STATEMENT_PATH, 0700)
 	endpoint = "problem?offset=0&limit=200"
 	inputstr = '{'
 	result = json.loads(curl("get", endpoint=endpoint, use_x_csrf_token=True))

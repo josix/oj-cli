@@ -20,7 +20,6 @@ def login():
     result = json.loads(result)
     print("%s!!" % result["data"])
     os.chmod(COOKIES_PATH, 0700)
-    print("Cookie File " + green_wrapper(COOKIES_PATH) + " has been protected automatically.(700)") 
 
 def fetch_csrf_token():
     if not os.path.isdir(COOKIES_DIR):
