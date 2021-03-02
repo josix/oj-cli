@@ -39,5 +39,5 @@ def curl(method, payload=None, endpoint="", use_x_csrf_token=False):
         str(result.decode(encoding="utf8"))
         return result
     except:
-        print(red_wrapper("\nBad Response! Please report back to TAs!\n"))
+        print(red_wrapper("\nUTF8 decode Error or other errors.\n"))
         return

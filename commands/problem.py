@@ -10,7 +10,7 @@ def problem_submit(problem_id, language, filename):
     with open(PROBLEM_MAPPING_PATH, "rt") as json_in:
         problem_to_config = json.load(json_in)
         if problem_id not in problem_to_config:
-            print("Invalid problem id! Please confirm your input.")
+            print(cyan_wrapper("Invalid problem id!") + " Please confirm your input.")
             return
     try:
         with open(filename, "r") as fin:
@@ -19,7 +19,7 @@ def problem_submit(problem_id, language, filename):
         print('File "' + filename + '" does not exist!')
         return
     if language != "C" and language != "C++" and language != "Python3" and language != "Python2" and language != "Golang" and language != "Java":
-        print("Please select a language type form " + cyan_wrapper("C, C++, Python3, Python3, Golang, Java."))
+        print("Please select a language type form " + cyan_wrapper("C, C++, Python2, Python3, Golang, Java."))
         return
     payload = {
         "problem_id": problem_to_config[problem_id]["_id"],

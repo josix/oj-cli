@@ -36,6 +36,7 @@ def contests_status(assign_name):
 			-2: cyan_wrapper("CE(Compilation Error)"),  # CE
 			0: green_wrapper("AC(Accept)"),  # AC
 			1: purple_wrapper("TLE(Time Limit Exceeded)"),  # TLE
+			2: purple_wrapper("TLE(Time Limit Exceeded)"),  # TLE
 			3: purple_wrapper("MLE(Memory Limit Exceeded)"),  # ML 
 			4: purple_wrapper("RE(Runtime Error)"),  # RE
 			8: cyan_wrapper("PAC(Partial Accepted)")
@@ -45,6 +46,8 @@ def contests_status(assign_name):
 	print("============================================================================")
 	print('|{:12}|{:27}|   Time|  Mem|               When|'.format("User","Status"))
 	for i in result:
+		if i["problem"] != assign_to_config[assign_name]["contest_problem_id"]:
+			continue
 		timestr = i["create_time"].split("T")[0]
 		timestr += " " + i["create_time"].split("T")[1].split(".")[0]
 		if i["result"] != -2:
@@ -96,6 +99,7 @@ def my_contests_status(assign_name):
 			-2: cyan_wrapper("CE(Compilation Error)"),  # CE
 			0: green_wrapper("AC(Accept)"),  # AC
 			1: purple_wrapper("TLE(Time Limit Exceeded)"),  # TLE
+			2: purple_wrapper("TLE(Time Limit Exceeded)"),  # TLE
 			3: purple_wrapper("MLE(Memory Limit Exceeded)"),  # ML 
 			4: purple_wrapper("RE(Runtime Error)"),  # RE
 			8: cyan_wrapper("PAC(Partial Accepted)")
@@ -107,6 +111,8 @@ def my_contests_status(assign_name):
 	inputstr = '{'
 	idx = 0
 	for i in result:
+		if i["problem"] != assign_to_config[assign_name]["contest_problem_id"]:
+			continue
 		timestr = i["create_time"].split("T")[0]
 		timestr += " " + i["create_time"].split("T")[1].split(".")[0]
 		if i["result"] != -2:
@@ -160,6 +166,7 @@ def contests_result(assign_name):
 			-2: cyan_wrapper("CE(Compilation Error)"),  # CE
 			0: green_wrapper("AC(Accept)"),  # AC
 			1: purple_wrapper("TLE(Time Limit Exceeded)"),  # TLE
+			2: purple_wrapper("TLE(Time Limit Exceeded)"),  # TLE
 			3: purple_wrapper("MLE(Memory Limit Exceeded)"),  # ML 
 			4: purple_wrapper("RE(Runtime Error)"),  # RE
 			8: cyan_wrapper("PAC(Partial Accepted)")
@@ -171,43 +178,58 @@ def contests_result(assign_name):
 	print("================================================")
 	blockstatus=[0,0,0,0,0,0,0,0,0,0]
 	for usr in result:
-		blocks = usr["total_score"]/10
-		blocks -= 1
-		if blocks <= 0:
-			blocks = 0
-		blockstatus[blocks] += 1
+		try:
+			problem_index = str(assign_to_config[assign_name]["problem_id"])
+			blocks = usr["submission_info"][problem_index]/10
+			blocks -= 1
+			if blocks <= 0:
+				blocks = 0
+			blockstatus[blocks] += 1
+		except:
+			continue
 	ic = 0
 	for i in blockstatus:
 		stastr = ''
 		if ic == 0:
 			try:
-				print(' {:3}~{:3} :{:3}  |  {:33} : {}'.format(ic+1,ic+10,i,status_to_response[0],result2["statistic_info"]["0"]))
+				print(' {:3}~{:3} :{:3}  |  {:35} : {}'.format(ic+1,ic+10,i,status_to_response[0],result2["statistic_info"]["0"]))
 			except:
-				print(' {:3}~{:3} :{:3}  |  {:33} : {}'.format(ic+1,ic+10,i,status_to_response[0],0))
+				print(' {:3}~{:3} :{:3}  |  {:35} : {}'.format(ic+1,ic+10,i,status_to_response[0],0))
 		elif ic == 10:
 			try:
-				print(' {:3}~{:3} :{:3}  |  {:33} : {}'.format(ic+1,ic+10,i,status_to_response[4],result2["statistic_info"]["4"]))
+				print(' {:3}~{:3} :{:3}  |  {:35} : {}'.format(ic+1,ic+10,i,status_to_response[4],result2["statistic_info"]["4"]))
 			except:
-				print(' {:3}~{:3} :{:3}  |  {:33} : {}'.format(ic+1,ic+10,i,status_to_response[4],0))
+				print(' {:3}~{:3} :{:3}  |  {:35} : {}'.format(ic+1,ic+10,i,status_to_response[4],0))
 		elif ic == 20:
 			try:
-				print(' {:3}~{:3} :{:3}  |  {:33} : {}'.format(ic+1,ic+10,i,status_to_response[8],result2["statistic_info"]["8"]))
+				print(' {:3}~{:3} :{:3}  |  {:35} : {}'.format(ic+1,ic+10,i,status_to_response[8],result2["statistic_info"]["8"]))
 			except:
-				print(' {:3}~{:3} :{:3}  |  {:33} : {}'.format(ic+1,ic+10,i,status_to_response[8],0))
+				print(' {:3}~{:3} :{:3}  |  {:35} : {}'.format(ic+1,ic+10,i,status_to_response[8],0))
 		elif ic == 30:
 			try:
-				print(' {:3}~{:3} :{:3}  |  {:33} : {}'.format(ic+1,ic+10,i,status_to_response[-1],result2["statistic_info"]["-1"]))
+				print(' {:3}~{:3} :{:3}  |  {:35} : {}'.format(ic+1,ic+10,i,status_to_response[-1],result2["statistic_info"]["-1"]))
 			except:
-				print(' {:3}~{:3} :{:3}  |  {:33} : {}'.format(ic+1,ic+10,i,status_to_response[-1],0))
+				print(' {:3}~{:3} :{:3}  |  {:35} : {}'.format(ic+1,ic+10,i,status_to_response[-1],0))
 		elif ic == 40:
 			try:
-				print(' {:3}~{:3} :{:3}  |  {:33} : {}'.format(ic+1,ic+10,i,status_to_response[-2],result2["statistic_info"]["-2"]))
+				print(' {:3}~{:3} :{:3}  |  {:35} : {}'.format(ic+1,ic+10,i,status_to_response[-2],result2["statistic_info"]["-2"]))
 			except:
-				print(' {:3}~{:3} :{:3}  |  {:33} : {}'.format(ic+1,ic+10,i,status_to_response[-2],0))	
+				print(' {:3}~{:3} :{:3}  |  {:35} : {}'.format(ic+1,ic+10,i,status_to_response[-2],0))
 		elif ic == 50:
-			print(' {:3}~{:3} :{:3}  |--------------------------------'.format(ic+1,ic+10,i))
+			try:
+				print(' {:3}~{:3} :{:3}  |  {:35} : {}'.format(ic+1,ic+10,i,status_to_response[1],result2["statistic_info"]["1"] + result2["statistic_info"]["2"]))
+			except:
+				try:
+					print(' {:3}~{:3} :{:3}  |  {:35} : {}'.format(ic+1,ic+10,i,status_to_response[1],result2["statistic_info"]["2"]))
+				except:
+					try:
+						print(' {:3}~{:3} :{:3}  |  {:35} : {}'.format(ic+1,ic+10,i,status_to_response[1],result2["statistic_info"]["1"]))
+					except:
+						print(' {:3}~{:3} :{:3}  |  {:35} : {}'.format(ic+1,ic+10,i,status_to_response[1],0))
 		elif ic == 60:
-			print(' {:3}~{:3} :{:3}  |  {:22} : {}'.format(ic+1,ic+10,i,"Total submissions",result2["submission_number"]))
+			print(' {:3}~{:3} :{:3}  |--------------------------------'.format(ic+1,ic+10,i))
+		elif ic == 70:
+			print(' {:3}~{:3} :{:3}  |  {:24} : {}'.format(ic+1,ic+10,i,"Total submissions",result2["submission_number"]))
 		else:
 			print(' {:3}~{:3} :{:3}  |'.format(ic+1,ic+10,i))
 		ic += 10
