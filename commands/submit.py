@@ -33,6 +33,13 @@ def submit(assign_number, filename):
         "contest_id": contest_id,
     }
     endpoint = "submission"
+    if(filename.split(".")[1] == "cpp"):
+        payload = {
+            "problem_id": problem_id,
+            "language": "C++",
+            "code": code,
+            "contest_id": contest_id,
+        }
 
     try:
         submission_response = json.loads(
@@ -51,7 +58,8 @@ def submit(assign_number, filename):
         if submission_response["error"] == "invalid-code":
             print("You can't submit empty file.'")
             return
-        print("Unknown error occuried!")
+        print("Error occuried!")
+        print(submission_response["data"])
         return
     print(
         "Submit successfully!\n"

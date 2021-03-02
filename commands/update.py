@@ -27,7 +27,7 @@ def update_map():
 	f.write(inputstr.encode("utf-8"))
 	f.close
 	print(green_wrapper("Updated problems successfully!"))
-
+	print("Target Contest: " + cyan_wrapper(CONTEST_NAME))
 	endpoint = "contests?offset=0&limit=10&status=0"
 	inputstr = '{'
 	result = json.loads(curl("get", endpoint=endpoint, use_x_csrf_token=True))
