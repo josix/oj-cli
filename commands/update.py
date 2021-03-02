@@ -18,10 +18,10 @@ def update_map():
 	counter_1 = 1
 	for i in range(0,len(result['data']['results'])):
 		real_id = result['data']['results'][i]['id']
-		display_id = result['data']['results'][i]['_id'].replace(" ","_")
+		display_id = result['data']['results'][i]['_id'].replace(" ","")
 		if counter_1 != 1:
 			inputstr += ','
-		inputstr += '"' + str(display_id) + '":{"_id":"' + str(real_id) + '"}'
+		inputstr += '"' + str(display_id) + '":{"_id":"' + str(real_id) + '","query_id":"' + result['data']['results'][i]['_id'].replace(" ","+") + '"}'
 		counter_1+=1
 	inputstr += '}'
 	f = open(PROBLEM_MAPPING_PATH,'w')

@@ -34,20 +34,34 @@ Usernme:
 Password:
 ```
 
-### `oj get_assign <assign_no>`
+### `oj get <assign_no>`
 #### About
-Use `oj get_assign <assign_no>` to download the latest assignment from contest. The downloaded files are stored in folder `hwX`. The folder includes testing data, output data, and template C script, which are named as `1.in`, `1.out`, and `main.c` separately.
+Use `oj get <assign_no>` to download the latest assignment from contest. The downloaded files are stored in folder `hwX`. The folder includes testing data, output data, and template C script, which are named as `1.in`, `1.out`, and `main.c` separately.
 #### Usage
-`oj get_assign` only required one argument to execute.
+`oj get` only required one argument to execute.
 ##### assign_no
 assign_no represents your assign number like `hw1`, `hw2` according to your updates. `oj-cli` will prompt `Invalid Assign Number!` if the input assign number has not opened and give valid assign numbers.
 
 #### Example
 ```
-$ oj get_assign hw1
+$ oj get hw1
 Made a [hw1] folder in your current directory.
 ```
 
+### `oj get_p <problem_no>`
+#### About
+Use `oj get_p <problem_no>` to download the problem in problem list. The downloaded files are stored in folder `problem_X`. The folder includes testing data, output data, and template C script, which are named as `1.in`, `1.out`, and `main.c` separately.
+#### Usage
+`oj get_p` only required one argument to execute.
+##### problem_no
+problem_no represents your problem display id like `1`, `57-2` according to your updates. `oj-cli` will prompt `Invalid Problem Id!` if the input problem id is invalid.
+##### Notice
+problem_no somtimes has blanks, cli will automatically replace them.
+#### Example
+```
+$ oj get_p 57-2
+Made a [problem_57-2] folder in your current directory.
+```
 
 ### `oj submit <assign_no> <code_file>`
 #### About

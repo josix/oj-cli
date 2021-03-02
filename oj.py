@@ -19,7 +19,7 @@ parser_update = subparsers.add_parser(
 parser_login.set_defaults(func=update_map)
 
 parser_get_assign = subparsers.add_parser(
-    "get_assign", description="Get assignment/exercise from contest"
+    "get", description="Get assignment/exercise from contest"
 )
 parser_get_assign.add_argument("assign_no", type=str, help="assignment number")
 parser_get_assign.set_defaults(func=get_assign)
@@ -46,7 +46,7 @@ parser_contest.set_defaults(func=contests_result)
 
 
 parser_get_problem = subparsers.add_parser(
-    "get_problem", description="Get problem from public problem"
+    "get_p", description="Get problem from public problem"
 )
 parser_get_problem.add_argument("problem_id", type=str, help="problem display ID")
 
@@ -72,8 +72,8 @@ args = parser.parse_args()
 cmd_to_func = {
     "login": auth,
 	"update": update_map,
-    "get_assign": lambda: get_assign(args.assign_no),
-    "get_problem": lambda: get_problem(args.problem_id),
+    "get": lambda: get_assign(args.assign_no),
+    "get_p": lambda: get_problem(args.problem_id),
     "submit": lambda: submit(args.assign_no, args.code_file),
 	"submit_p": lambda: problem_submit(args.problem_id, args.language, args.code_file), 
 	"status": lambda: contests_status(args.assign_no),
