@@ -152,15 +152,16 @@ def contests_result(assign_name):
 	if result["error"] == "error":
 		print("Error : " + result["data"])
 		return
-	endpoint = "contest/problem?contest_id={}".format(
-        contest_id
+	endpoint = "contest/problem?contest_id={}&problem_id={}".format(
+        contest_id,
+		assign_name
     )
 	result2 = json.loads(curl("get", endpoint=endpoint, use_x_csrf_token=True))
 	if result2["error"] == "error":
 		print("Error : " + result2["data"])
 		return
 	result = result["data"]["results"]
-	result2 = result2["data"][0]
+	result2 = result2["data"]
 	status_to_response = {
 			-1: red_wrapper("WA(Wrong Answer)"),  # WA
 			-2: cyan_wrapper("CE(Compilation Error)"),  # CE
