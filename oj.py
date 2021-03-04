@@ -5,7 +5,7 @@ from commands import auth, get_assign, get_problem, status, submit, update_map, 
 
 parser = argparse.ArgumentParser(
     prog="oj",
-    description="CLI tool that helping you access CP Online Judge",
+    description="https://github.com/andyjjrt/oj-cli#oj-cli",
 )
 subparsers = parser.add_subparsers(dest="subcmd")
 parser_login = subparsers.add_parser(

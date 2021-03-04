@@ -24,8 +24,9 @@ def contests_status(assign_name):
         assign_to_config[assign_name]["contest_id"],
         assign_to_config[assign_name]["contest_problem_id"],
     )
-	endpoint = "contest_submissions?myself=0&contest_id={}&limit=20".format(
-        contest_id
+	endpoint = "contest_submissions?myself=0&contest_id={}&limit=20&problem_id={}".format(
+        contest_id,
+		assign_name
     )
 	result = json.loads(curl("get", endpoint=endpoint, use_x_csrf_token=True))
 	if result["error"] == "error":
@@ -43,7 +44,7 @@ def contests_status(assign_name):
 			8: cyan_wrapper("PAC(Partial Accepted)")
 			}
 	print("============================================================================")
-	print('|  Contest Name: {:58}|'.format(assign_to_config[assign_name]["contest_problem_id"] + " [" + assign_to_config[assign_name]["contest_name"] + "]"))
+	print('|  Problem Name: {:58}|'.format(assign_to_config[assign_name]["contest_problem_id"] + " [" + assign_to_config[assign_name]["contest_name"] + "]"))
 	print("============================================================================")
 	print('|{:12}|{:27}|   Time|  Mem|               When|'.format("User","Status"))
 	for i in result:
@@ -91,8 +92,9 @@ def my_contests_status(assign_name):
         assign_to_config[assign_name]["contest_id"],
         assign_to_config[assign_name]["contest_problem_id"],
     )
-	endpoint = "contest_submissions?myself=1&contest_id={}&limit=20".format(
-        contest_id
+	endpoint = "contest_submissions?myself=1&contest_id={}&limit=20&problem_id={}".format(
+        contest_id,
+		assign_name
     )
 	result = json.loads(curl("get", endpoint=endpoint, use_x_csrf_token=True))
 	if result["error"] == "error":
@@ -109,10 +111,10 @@ def my_contests_status(assign_name):
 			4: purple_wrapper("RE(Runtime Error)"),  # RE
 			8: cyan_wrapper("PAC(Partial Accepted)")
 			}
-	print("====================================================================")
-	print('|  Contest Name: {:50}|'.format(assign_to_config[assign_name]["contest_problem_id"] + " [" + assign_to_config[assign_name]["contest_name"] + "]"))
-	print("====================================================================")
-	print('|{:4}|{:27}|   {:4}|  {:3}|               When|'.format("ID  ","Status","Time","Mem"))
+	print("============================================================================")
+	print('|  Problem Name: {:58}|'.format(assign_to_config[assign_name]["contest_problem_id"] + " [" + assign_to_config[assign_name]["contest_name"] + "]"))
+	print("============================================================================")
+	print('|{:12}|{:27}|   {:4}|  {:3}|               When|'.format("ID  ","Status","Time","Mem"))
 	inputstr = '{'
 	idx = 0
 	for i in result:
@@ -125,14 +127,14 @@ def my_contests_status(assign_name):
 		timestr = mydatetmp + hours_added
 		timestr.strftime("%m/%d/%Y, %H:%M:%S")
 		if i["result"] != -2:
-			print('|ID{:2}|{:38}|{:5}ms|{:3}MB|{}|'.format(idx,status_to_response[i["result"]], i["statistic_info"]["time_cost"], (i["statistic_info"]["memory_cost"]/1048576)+1, timestr))
+			print('|ID{:10}|{:38}|{:5}ms|{:3}MB|{}|'.format(idx,status_to_response[i["result"]], i["statistic_info"]["time_cost"], (i["statistic_info"]["memory_cost"]/1048576)+1, timestr))
 		else:
-			print('|ID{:2}|{:38}|{:5}--|{:3}--|{}|'.format(idx, status_to_response[i["result"]], "-----", "---", timestr))
+			print('|ID{:10}|{:38}|{:5}--|{:3}--|{}|'.format(idx, status_to_response[i["result"]], "-----", "---", timestr))
 		if idx != 0:
 			inputstr += ','
 		inputstr += '"ID' + str(idx) + '":{"id":"' + i["id"] + '"}'
 		idx+=1
-	print("====================================================================")
+	print("============================================================================")
 	inputstr += '}'
 	if not os.path.isdir(STATEMENT_PATH):
 		os.mkdir(STATEMENT_PATH)
