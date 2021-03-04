@@ -1,6 +1,7 @@
 import json
 import os
 from datetime import datetime
+from datetime import timedelta
 
 from constants import ASSIGNMENT_MAPPING_PATH, COOKIES_DIR, MY_STATUS_PATH, STATEMENT_PATH
 from .status import status
@@ -50,6 +51,10 @@ def contests_status(assign_name):
 			continue
 		timestr = i["create_time"].split("T")[0]
 		timestr += " " + i["create_time"].split("T")[1].split(".")[0]
+		mydatetmp = datetime.strptime(timestr, '%Y-%m-%d %H:%M:%S')
+		hours_added = timedelta(hours = 8)
+		timestr = mydatetmp + hours_added
+		timestr.strftime("%m/%d/%Y, %H:%M:%S")
 		if i["result"] != -2:
 			try:
 				usrname = i["username"].encode('ascii').decode()
@@ -115,6 +120,10 @@ def my_contests_status(assign_name):
 			continue
 		timestr = i["create_time"].split("T")[0]
 		timestr += " " + i["create_time"].split("T")[1].split(".")[0]
+		mydatetmp = datetime.strptime(timestr, '%Y-%m-%d %H:%M:%S')
+		hours_added = timedelta(hours = 8)
+		timestr = mydatetmp + hours_added
+		timestr.strftime("%m/%d/%Y, %H:%M:%S")
 		if i["result"] != -2:
 			print('|ID{:2}|{:38}|{:5}ms|{:3}MB|{}|'.format(idx,status_to_response[i["result"]], i["statistic_info"]["time_cost"], (i["statistic_info"]["memory_cost"]/1048576)+1, timestr))
 		else:
