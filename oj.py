@@ -63,7 +63,6 @@ parser_problem_submit = subparsers.add_parser(
     "submit_p", description="Submit your probkem answer and grade your code"
 )
 parser_problem_submit.add_argument("problem_id", type=str, help="problem id")
-parser_problem_submit.add_argument("language", type=str, help="the language of your code")
 parser_problem_submit.add_argument("code_file", type=str, help="file of your codes")
 
 
@@ -75,7 +74,7 @@ cmd_to_func = {
     "get": lambda: get_assign(args.assign_no),
     "get_p": lambda: get_problem(args.problem_id),
     "submit": lambda: submit(args.assign_no, args.code_file),
-	"submit_p": lambda: problem_submit(args.problem_id, args.language, args.code_file), 
+	"submit_p": lambda: problem_submit(args.problem_id, args.code_file), 
 	"status": lambda: contests_status(args.assign_no),
 	"mystat": lambda: my_contests_status(args.assign_no),
 	"rank": lambda: contests_result(args.assign_no),

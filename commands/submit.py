@@ -28,18 +28,17 @@ def submit(assign_number, filename):
         return
     payload = {
         "problem_id": problem_id,
-        "language": "C",
         "code": code,
         "contest_id": contest_id,
     }
     endpoint = "submission"
     if(filename.split(".")[1] == "cpp"):
-        payload = {
-            "problem_id": problem_id,
-            "language": "C++",
-            "code": code,
-            "contest_id": contest_id,
-        }
+        payload["language"] = "C++"
+    elif(filename.split(".")[1] == "c"):
+        payload["language"] = "C"
+    else:
+        print("Wrong file format.")
+        return
 
     try:
         submission_response = json.loads(
@@ -63,7 +62,6 @@ def submit(assign_number, filename):
         return
     print(
         "Submit successfully!\n"
-        "Your submission Id is {}\n"
         "Getting submission status...".format(submission_id)
     )
     time.sleep(1.0)

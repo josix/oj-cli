@@ -22,7 +22,7 @@ After installation, please modify `CONTEST_NAME` variable in `constants.py` to t
 
 
 ### Commands
-### `oj login`
+### oj login
 #### About
 Use `oj login` to login to the account in OnlineJudge. It required you to enter your account information so that `oj-cli` could access OnlineJudge service successfully. After entering your username and password. `oj-cli` will respond if you login successfully or not.
 #### Usage
@@ -34,7 +34,7 @@ Usernme:
 Password:
 ```
 
-### `oj get <assign_no>`
+### oj get <assign_no>
 #### About
 Use `oj get <assign_no>` to download the latest assignment from contest. The downloaded files are stored in folder `hwX`. The folder includes testing data, output data, and template C script, which are named as `1.in`, `1.out`, and `main.c` separately.
 #### Usage
@@ -48,7 +48,7 @@ $ oj get hw1
 Made a [hw1] folder in your current directory.
 ```
 
-### `oj get_p <problem_no>`
+### oj get_p <problem_no>
 #### About
 Use `oj get_p <problem_no>` to download the problem in problem list. The downloaded files are stored in folder `problem_X`. The folder includes testing data, output data, and template C script, which are named as `1.in`, `1.out`, and `main.c` separately.
 #### Usage
@@ -63,7 +63,7 @@ $ oj get_p 57-2
 Made a [problem_57-2] folder in your current directory.
 ```
 
-### `oj submit <assign_no> <code_file>`
+### oj submit <assign_no> <code_file>
 #### About
 Use `oj submit <assign_no> <code_file>` to submit your code to contest and return the results. 
 
@@ -93,21 +93,17 @@ Result: AC(Accept)              Score: 100
 ```
 
 
-### `oj submit_p <problem_no> <language> <code_file>`
+### oj submit_p <problem_no> <code_file>
 #### About
-Use `oj submit_p <problem_no> <language> <code_file>` to submit your code to problem and return the results. 
+Use `oj submit_p <problem_no> <code_file>` to submit your code to problem and return the results. 
 
 #### Usage
 `oj submit_p` required three arguments to execute.
 
 ##### problem_no
-assign_no represents your assign number like `1`, `2` according to your updates. `oj-cli` will prompt `Invalid Assign Number!` if the input assign number soes not exist. Notice that blanks in `problem_no` will be replaced to "+"
+assign_no represents your assign number like `1`, `2` according to your updates. `oj-cli` will prompt `Invalid Assign Number!` if the input assign number soes not exist. 
 
-##### language
-language is your coding language. The avaliable languages now are
-C, C++, Python2, Python3, Golang, Java
-
-Notice your capital letter!!
+Notice that blanks in `problem_no` will be replaced by nothing.
 
 ##### code_file
 code_file is the path to your script. `oj` will read the file then submit this answer to OnlineJudge Service.
@@ -130,7 +126,7 @@ Result: AC(Accept)                     Score: 100
 ```
 
 
-### `oj rank <assign_no>`
+### oj rank <assign_no>
 #### About
 Use `oj rank <assign_no>` to view the class result of this assign.
 #### Usage
@@ -158,7 +154,7 @@ For real score ranking,please go to the website.
 ```
 
 
-### `oj update`
+### oj update
 #### About
 Use `oj update` to get the latest assignments.
 #### Usage
@@ -174,7 +170,7 @@ Updated assign successfully!
 ```
 
 
-### `oj status <assign_no>`
+### oj status <assign_no>
 #### About
 Use `oj status <assign_no>` to view the latest 20 submissions of this contest.
 #### Usage
@@ -199,7 +195,7 @@ $ oj status hw2
 ...
 ```
 
-### `oj mystat <option>`
+### oj mystat <option>
 #### About
 Use `oj mystat <option>` to view your latest 20 submissions of this contest, each of the submission has the specific ID.
 #### Usage
@@ -233,7 +229,7 @@ Result: PAC(Partial Accepted)   Score:  20
 ================================================= 
 ```
 
-### `oj dl <ID>`
+### oj dl <ID>
 #### About
 Use `oj dl <ID>` to download your specific submission's source code.
 #### Usage
