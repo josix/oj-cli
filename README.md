@@ -110,7 +110,7 @@ code_file is the path to your script. `oj` will read the file then submit this a
 
 #### Example
 ```
-$ oj problem_submit 1091CP1_Exercise8 C ex8.c
+$ oj problem_submit 1091CP1_Exercise8 ex8.c
 Submit successfully!!
 Getting submission status...
 ========================================================
