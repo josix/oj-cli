@@ -39,7 +39,7 @@ def get_assign(assign_name):
     if "C" in data["template"]:
         template = data["template"]["C"]
     else:
-        template = "#include <stdio.h>\n\nint main() {\n  \n  return 0;\n}\n"
+        template = "#include <stdio.h>\n\nint main() {\n    \n    return 0;\n}\n"
     dir_name = data["_id"]
     print("Made a [{}] folder in your current directory.".format(dir_name))
     template_path = dir_name + "/main.c"
@@ -52,8 +52,14 @@ def get_assign(assign_name):
         input_sample_path = dir_name + "/" + "{}.in".format(sample_num)
         input_ = sample["input"]
         with open(input_sample_path, "wt") as fout:
-            fout.write(input_)
+            try:
+                fout.write(input_)
+            except:
+                print("ERROR: None-ascii character in input file")
         output_sample_path = dir_name + "/" + "{}.out".format(sample_num)
         output = sample["output"]
         with open(output_sample_path, "wt") as fout:
-            fout.write(output)
+            try:
+                fout.write(output)
+            except:
+                print("ERROR: None-ascii character in input file")
