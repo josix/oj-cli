@@ -46,13 +46,19 @@ def update_map():
 			print("Error : " + result2["data"])
 			continue
 		for problems in range(0,len(result2['data'])):
-			name = result2['data'][problems]['title']
 			c_id = result2['data'][problems]['_id']
+			name = result2['data'][problems]['title']
 			r_id =  result2['data'][problems]['id']
-			print("Found HomeWork: " + cyan_wrapper(str(c_id) + " [" + name + "]"))
+			try:
+				print("Found HomeWork: " + cyan_wrapper(str(c_id) + " [" + name + "]"))
+			except:
+				print("Found HomeWork: " + cyan_wrapper(str(c_id) + " [" + str(c_id) + "]"))
 			if counter != 1:
 				inputstr += ','
-			inputstr += '"' + str(c_id) + '":{"contest_name":"' + str(name) + '","contest_id":' + str(contestid) + ',"contest_problem_id":"' + str(c_id)+ '","problem_id":' + str(r_id) + '}'
+			try:
+				inputstr += '"' + str(c_id) + '":{"contest_name":"' + str(name) + '","contest_id":' + str(contestid) + ',"contest_problem_id":"' + str(c_id)+ '","problem_id":' + str(r_id) + '}'
+			except:
+				inputstr += '"' + str(c_id) + '":{"contest_name":"' + str(c_id) + '","contest_id":' + str(contestid) + ',"contest_problem_id":"' + str(c_id)+ '","problem_id":' + str(r_id) + '}'
 			counter += 1
 	inputstr += '}'
 	if not os.path.isdir(STATEMENT_PATH):
