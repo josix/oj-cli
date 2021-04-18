@@ -2,7 +2,7 @@ import json
 import re
 from subprocess import check_output
 
-from constants import API_HOST, CONTENT_TYPE_OPTION, COOKIES_PATH
+from constants import API_HOST, CONTENT_TYPE_OPTION, COOKIES_PATH, HOST
 
 from .common import get_csrf_token
 from .colors import red_wrapper
@@ -27,6 +27,8 @@ def curl(method, payload=None, endpoint="", use_x_csrf_token=False):
         cmd += " -H 'X-CSRFToken: {x_csrf_token}' ".format(
             x_csrf_token=get_csrf_token()
         )
+        cmd += " -H 'Referer: " + HOST + "' "
+    
     if payload:
         cmd += " -d '{data}' ".format(data=re.sub("'", "\u0027", json.dumps(payload)))
     cmd += (' -X {method} "{api_host}/{endpoint}"').format(

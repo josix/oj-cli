@@ -1,6 +1,7 @@
 from os.path import dirname, expanduser, realpath
 
-HOST = "https://oj.mozix.ebg.tw/"
+HOST = "https://oj.ebg.tw/"
+#HOST = "http://localhost/"
 CONTEST_NAME = "1092CP2"
 #CONTEST_NAME = "1092CPPY"
 
