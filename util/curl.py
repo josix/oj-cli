@@ -27,7 +27,9 @@ def curl(method, payload=None, endpoint="", use_x_csrf_token=False):
         cmd += " -H 'X-CSRFToken: {x_csrf_token}' ".format(
             x_csrf_token=get_csrf_token()
         )
-        cmd += " -H 'Referer: " + HOST + "' "
+        cmd += " -H 'Referer: {HOST}'".format(
+			HOST = HOST
+		)
     
     if payload:
         cmd += " -d '{data}' ".format(data=re.sub("'", "\u0027", json.dumps(payload)))
