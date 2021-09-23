@@ -10,10 +10,9 @@ source ~/.profile
 ### Installation from source code
 
 ```
-cd ~
 git clone https://github.com/andyjjrt/oj-cli.git
 cd oj-cli
-echo 'alias oj="python2.7 ~/oj-cli/oj"' >> ~/.bashrc
+echo "alias oj='python2.7 $PWD/oj'" >> ~/.bashrc
 source ~/.bashrc
 ```
 
@@ -158,15 +157,25 @@ For real score ranking,please go to the website.
 #### About
 Use `oj update` to get the latest assignments.
 #### Usage
-No argument required. Only enter `oj update` and it will automatically get the assignments and the problems.
+No argument required. Only enter `oj update` and it will automatically get the assignments.
 
 #### Example
 ```
 $ oj update
+Target Contest: 1101CP1
+Found HomeWork: hw0 [Online Submission]
+```
+
+### oj update_p
+#### About
+Use `oj update_p` to get the latest assignments.
+#### Usage
+No argument required. Only enter `oj update_p` and it will automatically get the problems.
+
+#### Example
+```
+$ oj update_p
 Updated problems successfully!
-Found HomeWork: hw01 [Nim!]
-Found HomeWork: ex01 [Tree Postorder]
-Updated assign successfully!
 ```
 
 
