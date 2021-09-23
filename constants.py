@@ -1,10 +1,8 @@
 from os.path import dirname, expanduser, realpath
 
 HOST = "https://oj.ebg.tw/"
-#HOST = "http://localhost/"
-CONTEST_NAME = "1092CP2"
-#CONTEST_NAME = "1092CP2_Midterm"
-#CONTEST_NAME = "1092CPPY"
+CONTEST_NAME = "1101CP1"
+
 
 API_HOST = HOST + "api"
 CONTENT_TYPE_OPTION = " -H 'Content-Type: application/json' "

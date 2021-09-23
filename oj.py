@@ -1,7 +1,7 @@
 #!/opt/csw/bin/python2.7
 import argparse
 
-from commands import auth, get_assign, get_problem, status, submit, update_map, contests_result, contests_status, my_contests_status,dl, problem_submit
+from commands import auth, get_assign, get_problem, status, submit, update_contest_map, update_problem_map, contests_result, contests_status, my_contests_status,dl, problem_submit
 
 parser = argparse.ArgumentParser(
     prog="oj",
@@ -16,7 +16,12 @@ parser_login.set_defaults(func=auth)
 parser_update = subparsers.add_parser(
     "update", description="Update your Assign and Exercise Homework"
 )
-parser_login.set_defaults(func=update_map)
+parser_login.set_defaults(func=update_contest_map)
+
+parser_update = subparsers.add_parser(
+    "update_p", description="Update your Problems"
+)
+parser_login.set_defaults(func=update_problem_map)
 
 parser_get_assign = subparsers.add_parser(
     "get", description="Get assignment/exercise from contest"
@@ -70,7 +75,8 @@ parser_problem_submit.add_argument("code_file", type=str, help="file of your cod
 args = parser.parse_args()
 cmd_to_func = {
     "login": auth,
-	"update": update_map,
+	"update": update_contest_map,
+    "update_p": update_problem_map,
     "get": lambda: get_assign(args.assign_no),
     "get_p": lambda: get_problem(args.problem_id),
     "submit": lambda: submit(args.assign_no, args.code_file),

@@ -20,15 +20,15 @@ def problem_submit(problem_id, filename):
         return
     endpoint = "submission"
     code_type = ""
-    if(filename.split(".")[1] == "cpp"):
+    if(filename.split(".")[-1] == "cpp"):
         code_type = "C++"
-    elif(filename.split(".")[1] == "c"):
+    elif(filename.split(".")[-1] == "c"):
         code_type = "C"
-    elif(filename.split(".")[1] == "go"):
+    elif(filename.split(".")[-1] == "go"):
         code_type = "Golang"
-    elif(filename.split(".")[1] == "java"):
+    elif(filename.split(".")[-1] == "java"):
         code_type = "Java"
-    elif(filename.split(".")[1] == "py"):
+    elif(filename.split(".")[-1] == "py"):
         type_ = input("Choose Python version (2/3): ")
         if(type_ == 2):
             code_type = "Python2"
