@@ -4,12 +4,16 @@ import os
 
 from constants import ASSIGNMENT_MAPPING_PATH
 from util.curl import curl
-from util.colors import cyan_wrapper
+from util.colors import cyan_wrapper, red_wrapper
 
 
 def get_assign(assign_name):
-    with open(ASSIGNMENT_MAPPING_PATH, "rt") as json_in:
-        assign_to_config = json.load(json_in)
+    try:
+        with open(ASSIGNMENT_MAPPING_PATH, "rt") as json_in:
+            assign_to_config = json.load(json_in)
+    except:
+        print(red_wrapper("Can not find assign mapping, did you already run ") + cyan_wrapper("oj update ") + red_wrapper("?"))
+        return
     if assign_name not in assign_to_config:
         print("Invalid Assign Number!")
         print("Available names are:")

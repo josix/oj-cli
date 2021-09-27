@@ -3,7 +3,7 @@ import os
 
 from constants import ASSIGNMENT_MAPPING_PATH, STATEMENT_PATH, CONTEST_NAME
 from util.curl import curl
-from util.colors import cyan_wrapper, green_wrapper
+from util.colors import cyan_wrapper, green_wrapper, red_wrapper
 
 def update_contest_map():
 	if not os.path.isdir(STATEMENT_PATH):
@@ -47,5 +47,8 @@ def update_contest_map():
 	f = open(ASSIGNMENT_MAPPING_PATH,'w')
 	f.write(inputstr.encode("utf-8"))
 	f.close
-	print(green_wrapper("Updated assign successfully!"))
+	if result2["error"] == "error":
+		print(red_wrapper("Fail updating assign!"))
+	else:
+		print(green_wrapper("Updated assign successfully!"))
 	

@@ -3,12 +3,16 @@ import os
 
 from constants import TEMPLATE_FILENAME, PROBLEM_MAPPING_PATH
 from util.curl import curl
-from util.colors import cyan_wrapper
+from util.colors import cyan_wrapper, red_wrapper
 
 
 def get_problem(problem_id):
-    with open(PROBLEM_MAPPING_PATH, "rt") as json_in:
-        problem_to_config = json.load(json_in)
+    try:
+        with open(PROBLEM_MAPPING_PATH, "rt") as json_in:
+            problem_to_config = json.load(json_in)
+    except:
+        print(red_wrapper("Can not find problem mapping, did you already run ") + cyan_wrapper("oj update_p") + red_wrapper("?"))
+        return
     if problem_id not in problem_to_config:
         print(cyan_wrapper("Invalid problem id!") + " Please confirm your input.")
         return
