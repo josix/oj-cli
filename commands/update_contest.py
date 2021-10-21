@@ -14,6 +14,7 @@ def update_contest_map():
 	inputstr = '{'
 	result = json.loads(curl("get", endpoint=endpoint, use_x_csrf_token=True))
 	counter = 1
+	result2 = ""
 	for i in range(0,len(result['data']['results'])):
 		if(result['data']['results'][i]['title'] != CONTEST_NAME):
 			continue
