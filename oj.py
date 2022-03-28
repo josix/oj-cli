@@ -1,7 +1,7 @@
 #!/opt/csw/bin/python2.7
 import argparse
 
-from commands import auth, get_assign, get_problem, status, submit, update_contest_map, update_problem_map, contests_result, contests_status, my_contests_status,dl, problem_submit
+from commands import auth, get_assign, get_problem, status, submit, update_contest_map, update_problem_map, contests_result, contests_status, my_contests_status,dl, problem_submit, get_grades
 
 parser = argparse.ArgumentParser(
     prog="oj",
@@ -70,6 +70,8 @@ parser_problem_submit = subparsers.add_parser(
 parser_problem_submit.add_argument("problem_id", type=str, help="problem id")
 parser_problem_submit.add_argument("code_file", type=str, help="file of your codes")
 
+parser_grades = subparsers.add_parser("grades", description="get grades from contest")
+parser_grades.add_argument("contest", type=str, help="contest name")
 
 
 args = parser.parse_args()
@@ -85,6 +87,7 @@ cmd_to_func = {
 	"mystat": lambda: my_contests_status(args.assign_no),
 	"rank": lambda: contests_result(args.assign_no),
 	"dl": lambda: dl(args.submission_id),
+    "grades": lambda:get_grades(args.contest),
 }
 
 
