@@ -43,6 +43,7 @@ def get_grades(contest):
     while current < total:
         endpoint = "admin/contest/problem?keyword&offset={}&limit=50&contest_id={}".format(current, contestID)
         result = json.loads(curl("GET", endpoint=endpoint, use_x_csrf_token=True))
+        print(result)
         for r in result["data"]["results"]:
             allHW.append(str(r["_id"]))
         current, total = current + 50, result["data"]["total"]
