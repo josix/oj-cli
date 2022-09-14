@@ -1,7 +1,7 @@
 from os.path import dirname, expanduser, realpath
 
 HOST = "https://oj.ebg.tw/"
-CONTEST_NAME = "1102CP2"
+CONTEST_NAME = "1111CP1"
 
 
 API_HOST = HOST + "api"
