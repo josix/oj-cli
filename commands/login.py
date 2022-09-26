@@ -15,8 +15,12 @@ def login():
 		"username": username,
 		"password": passwd,
 	}
+	tfa_required = curl("post", payload={"username": username}, endpoint="tfa_required/", use_x_csrf_token=True)
+	tfa_required = json.loads(tfa_required)
+	if tfa_required["data"]["result"] == True:
+		tfa_code = raw_input("TFA code: ")
+		payload["tfa_code"] = tfa_code
 	result = curl("post", payload=payload, endpoint="login/", use_x_csrf_token=True)
-	#print(result)
 	result = json.loads(result)
 	print("%s!!" % result["data"])
 	os.chmod(COOKIES_PATH, 0700)
