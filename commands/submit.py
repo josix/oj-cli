@@ -32,8 +32,11 @@ def submit(assign_number, filename):
         "contest_id": contest_id,
     }
     endpoint = "submission"
-    if(filename.split(".")[-1] == "c"):
+    type = filename.split(".")[-1]
+    if type == "c":
         payload["language"] = "C"
+    elif type == "cpp":
+        payload["language"] = "C++"
     else:
         print("Wrong file format.")
         return
